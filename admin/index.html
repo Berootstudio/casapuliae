@@ -14,7 +14,29 @@
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script>
+    // Inizializza Netlify Identity
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+    
+    // Gestisce recovery token
+    if (window.location.hash.match(/^(#|#recovery_token=)/)) {
+      // Il token è già presente, Netlify Identity lo gestisce automaticamente
+      // ma assicuriamoci che il widget sia visibile
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.open();
+      }
+    }
+    
+    // Inizializza Decap CMS
     CMS.init();
   </script>
 </body>
