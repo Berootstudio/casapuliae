@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le Suite – Casa Apuliae, Bitonto</title>
+  <meta name="description" content="Tre suite uniche a Palazzo Giannone Alitti: Frida Kahlo, Virginia Woolf, Lady Diana. Lusso e storia nel centro di Bitonto." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="loredana.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__brand">
+        <span class="navbar__brand-main">CASA</span>
+        <span class="navbar__brand-sub">APULIAE</span>
+      </a>
+      <ul class="navbar__links">
+        <li><a href="index.html" class="navbar__link">Home</a></li>
+        <li><a href="le-camere.html" class="navbar__link navbar__link--active">Camere</a></li>
+        <li><a href="eventi.html" class="navbar__link">Eventi</a></li>
+        <li><a href="prenota-ora.html" class="navbar__link">Contatti</a></li>
+        <li><a href="prenota-ora.html" class="navbar__link navbar__link--cta">Prenota ora</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO GALLERY -->
+  <section class="page-hero page-hero--gallery" id="hero">
+    <div class="hero-background" style="background-image: url('public/images/camera-frida.jpg');"></div>
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <p class="eyebrow eyebrow--light">Dove soggiornare</p>
+      <h1 class="page-hero__title">Le nostre suite</h1>
+      <div class="gold-divider"></div>
+    </div>
+    
+    <!-- Gallery Thumbnails -->
+    <div class="hero-gallery">
+      <div class="hero-gallery__item" data-index="0" style="background-image: url('public/images/camera-frida.jpg');">
+        <div class="hero-gallery__overlay">
+          <span class="hero-gallery__label">Frida Kahlo</span>
+        </div>
+      </div>
+      <div class="hero-gallery__item" data-index="1" style="background-image: url('public/images/camera-virginia.jpg');">
+        <div class="hero-gallery__overlay">
+          <span class="hero-gallery__label">Virginia Woolf</span>
+        </div>
+      </div>
+      <div class="hero-gallery__item" data-index="2" style="background-image: url('public/images/camera-diana.jpg');">
+        <div class="hero-gallery__overlay">
+          <span class="hero-gallery__label">Lady Diana</span>
+        </div>
+      </div>
+      <div class="hero-gallery__item" data-index="3" style="background-image: url('public/images/colazione.jpg');">
+        <div class="hero-gallery__overlay">
+          <span class="hero-gallery__label">Colazione</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Lightbox -->
+  <div class="gallery-lightbox" id="galleryLightbox">
+    <button class="gallery-lightbox__close" aria-label="Chiudi">&times;</button>
+    <button class="gallery-lightbox__arrow gallery-lightbox__arrow--prev" aria-label="Precedente">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"></polyline></svg>
+    </button>
+    <div class="gallery-lightbox__image"></div>
+    <button class="gallery-lightbox__arrow gallery-lightbox__arrow--next" aria-label="Successiva">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"></polyline></svg>
+    </button>
+    <div class="gallery-lightbox__caption"></div>
+  </div>
+
+  <!-- CTA SCEGLI LA TUA SUITE -->
+  <section class="section section--light">
+    <div class="container">
+      <div class="cta-block">
+        <p class="eyebrow">Prenota ora</p>
+        <h2 class="section-title">Scegli la tua camera</h2>
+        <div class="gold-divider"></div>
+
+        <form class="booking-bar booking-bar--compact" id="booking-form-cta" style="justify-content: center;">
+          <div class="booking-bar__field">
+            <label for="checkin-cta">Check-in</label>
+            <input type="date" id="checkin-cta" name="checkin" required />
+          </div>
+          <div class="booking-bar__field">
+            <label for="checkout-cta">Check-out</label>
+            <input type="date" id="checkout-cta" name="checkout" required />
+          </div>
+          <div class="booking-bar__field">
+            <label for="guests-cta">Ospiti</label>
+            <select id="guests-cta" name="guests" required>
+              <option value="1">1</option>
+              <option value="2" selected>2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+          </div>
+          <div class="booking-bar__field">
+            <label for="room-cta">Camera</label>
+            <select id="room-cta" name="room">
+              <option value="">Tutte</option>
+              <option value="frida">Frida Kahlo</option>
+              <option value="virginia">Virginia Woolf</option>
+              <option value="lady">Lady Diana</option>
+            </select>
+          </div>
+          <button type="submit" class="booking-bar__btn">Verifica disponibilità</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAMERA 1: FRIDA KAHLO -->
+  <section class="section section--cream room-section">
+    <div class="container grid-2">
+      <div class="img-double">
+        <div class="img-double__main">
+          <div class="img-block__inner" style="background-image: url('public/images/camera-frida.jpg');"></div>
+          <span class="room-badge">Camera Matrimoniale Deluxe</span>
+        </div>
+        <div class="img-double__thumb">
+          <div class="img-block__inner" style="background-image: url('public/images/camera-frida-2.jpg');"></div>
+        </div>
+      </div>
+      <div class="text-block">
+        <h2 class="room-title">Frida Kahlo</h2>
+        <div class="gold-divider gold-divider--left"></div>
+        <p class="body-text">Ispirata dalla celebre pittrice messicana, questa camera matrimoniale Deluxe è un mix di design e carattere. Dotata di ogni comfort, la Frida Kahlo propone un ampio spazio composto da bagno privato, doccia panoramica con cromoterapia, un'ampia finestra, set cortesia e arredi ricercati.</p>
+        <div class="room-features">
+          <div class="room-feature">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M4 6h16M4 18h7"/></svg>
+            <span>Bagno privato</span>
+          </div>
+          <div class="room-feature">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            <span>Cromoterapia</span>
+          </div>
+          <div class="room-feature">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <span>Vista città</span>
+          </div>
+          <div class="room-feature">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span>Set cortesia</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAMERA 2: VIRGINIA WOOLF -->
+  <section class="section section--light room-section">
+    <div class="container grid-2 grid-2--reverse">
+      <div class="img-double">
+        <div class="img-double__main">
+          <div class="img-block__inner" style="background-image: url('public/images/camera-virginia.jpg');"></div>
+          <span class="room-badge">Suite</span>
+        </div>
+        <div class="img-double__thumb">
+          <div class="img-block__inner" style="background-image: url('public/images/camera-virginia-2.jpg');"></div>
+        </div>
+      </div>
+      <div class="text-block">
+        <h2 class="room-title">Virginia Woolf</h2>
+        <div class="gold-divider gold-divider--left"></div>
+        <p class="body-text">La Suite Virginia Woolf è l'incarnazione perfetta di eleganza e romanticismo. La sua atmosfera ospitale e delicata è stata creata da un ricercato gioco di luci soffuse che abbraccia marmi e carte da parato. Caratteristica distintiva di questa suite è la vasca sinuosa nelle sue forme, perfetta per bagni rilassanti a lume di candela.</p>
+        <div class="room-features">
+          <div class="room-feature">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M4 6h16M4 18h7"/></svg>
+            <span>Vasca sinuosa</span>
+          </div>
+          <div class="room-feature">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            <span>Cromoterapia</span>
+          </div>
+          <div class="room-feature">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <span>Vista Cattedrale</span>
+          </div>
+          <div class="room-feature">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span>Marmi pregiati</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAMERA 3: LADY DIANA -->
+  <section class="section section--cream room-section">
+    <div class="container grid-2">
+      <div class="img-double">
+        <div class="img-double__main">
+          <div class="img-block__inner" style="background-image: url('public/images/camera-diana.jpg');"></div>
+          <span class="room-badge">Suite Premium</span>
+        </div>
+        <div class="img-double__thumb">
+          <div class="img-block__inner" style="background-image: url('public/images/camera-diana-2.jpg');"></div>
+        </div>
+      </div>
+      <div class="text-block">
+        <h2 class="room-title">Lady Diana</h2>
+        <div class="gold-divider gold-divider--left"></div>
+        <p class="body-text">Dedicata alla versatilità e all'estrema raffinatezza della Principessa Diana, la Suite offre un'esclusiva esperienza di lusso e benessere. La Suite Diana dispone di un'ampia vasca idromassaggio privata con cromoterapia, con vista mozzafiato direttamente sulla Concattedrale. Dotata anche di sauna finlandese ad uso esclusivo e balcone privato.</p>
+        <div class="room-features">
+          <div class="room-feature">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M4 6h16M4 18h7"/></svg>
+            <span>Vasca idromassaggio</span>
+          </div>
+          <div class="room-feature">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            <span>Sauna finlandese</span>
+          </div>
+          <div class="room-feature">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <span>Balcone privato</span>
+          </div>
+          <div class="room-feature">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span>Vista Concattedrale</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+
+        <div class="footer__col">
+          <div class="footer__brand">
+            <p class="footer__brand-main">CASA</p>
+            <p class="footer__brand-sub">APULIAE</p>
+          </div>
+          <p class="footer__desc">Un palazzo storico nel cuore di Bitonto, dove lusso e tradizione pugliese si incontrano.</p>
+          <div class="footer__social">
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+            </a>
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__col-title">Contatti</h4>
+          <ul class="footer__list">
+            <li><a href="tel:+393470485464" class="footer__list-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l.87-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              +39 347 048 5464
+            </a></li>
+            <li class="footer__list-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Piazza Cattedrale 23, 2º piano – Bitonto (BA)
+            </li>
+            <li><a href="mailto:casaapuliae@libero.it" class="footer__list-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              casaapuliae@libero.it
+            </a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__col-title">Orari</h4>
+          <ul class="footer__list">
+            <li class="footer__list-item">Check-in: 14:00 – 17:00</li>
+            <li class="footer__list-item">Check-out: entro le 11:00</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2025 Casa Apuliae. Tutti i diritti riservati.</p>
+        <div class="footer__bottom-links">
+          <a href="privacy-policy.html" class="footer__bottom-link">Privacy Policy</a>
+          <a href="privacy-policy.html" class="footer__bottom-link">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="loredana.js"></script>
+  <script>
+    // Gallery Lightbox
+    (function() {
+      var galleryItems = document.querySelectorAll('.hero-gallery__item');
+      var lightbox = document.getElementById('galleryLightbox');
+      var lightboxImage = document.querySelector('.gallery-lightbox__image');
+      var lightboxCaption = document.querySelector('.gallery-lightbox__caption');
+      var closeBtn = document.querySelector('.gallery-lightbox__close');
+      var prevBtn = document.querySelector('.gallery-lightbox__arrow--prev');
+      var nextBtn = document.querySelector('.gallery-lightbox__arrow--next');
+      var currentIndex = 0;
+      
+      var images = [
+        { src: 'public/images/camera-frida.jpg', caption: 'Suite Frida Kahlo' },
+        { src: 'public/images/camera-virginia.jpg', caption: 'Suite Virginia Woolf' },
+        { src: 'public/images/camera-diana.jpg', caption: 'Suite Lady Diana' },
+        { src: 'public/images/colazione.jpg', caption: 'Colazione in camera' }
+      ];
+      
+      function openLightbox(index) {
+        currentIndex = index;
+        lightboxImage.style.backgroundImage = 'url(' + images[index].src + ')';
+        lightboxCaption.textContent = images[index].caption;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+      
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+      
+      function showPrev() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        lightboxImage.style.backgroundImage = 'url(' + images[currentIndex].src + ')';
+        lightboxCaption.textContent = images[currentIndex].caption;
+      }
+      
+      function showNext() {
+        currentIndex = (currentIndex + 1) % images.length;
+        lightboxImage.style.backgroundImage = 'url(' + images[currentIndex].src + ')';
+        lightboxCaption.textContent = images[currentIndex].caption;
+      }
+      
+      galleryItems.forEach(function(item, index) {
+        item.addEventListener('click', function() {
+          openLightbox(index);
+        });
+      });
+      
+      closeBtn.addEventListener('click', closeLightbox);
+      prevBtn.addEventListener('click', showPrev);
+      nextBtn.addEventListener('click', showNext);
+      
+      lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) closeLightbox();
+      });
+      
+      document.addEventListener('keydown', function(e) {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') showPrev();
+        if (e.key === 'ArrowRight') showNext();
+      });
+    })();
+  </script>
+</body>
+</html>

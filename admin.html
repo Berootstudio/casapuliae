@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Casa Apuliae</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .admin-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    .admin-login {
+      max-width: 400px;
+      margin: 10vh auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+    .admin-login h2 {
+      text-align: center;
+      color: var(--green);
+      margin-bottom: 1.5rem;
+    }
+    .admin-login input {
+      width: 100%;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    .admin-login button {
+      width: 100%;
+      padding: 1rem;
+      background: var(--green);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+    .admin-login button:hover {
+      background: var(--green-dark);
+    }
+    .admin-panel {
+      display: none;
+    }
+    .admin-panel.active {
+      display: block;
+    }
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--cream);
+    }
+    .admin-header h1 {
+      color: var(--green);
+    }
+    .admin-btn {
+      padding: 0.75rem 1.5rem;
+      background: var(--green);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .admin-btn--secondary {
+      background: #888;
+    }
+    .admin-btn--danger {
+      background: #e74c3c;
+    }
+    .events-list {
+      display: grid;
+      gap: 1rem;
+    }
+    .event-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      gap: 1rem;
+      align-items: start;
+    }
+    .event-card img {
+      width: 100%;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .event-card h3 {
+      color: var(--dark-brown);
+      margin-bottom: 0.5rem;
+    }
+    .event-card p {
+      color: #666;
+      font-size: 0.875rem;
+    }
+    .event-card .actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .event-form {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      margin-top: 2rem;
+      display: none;
+    }
+    .event-form.active {
+      display: block;
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--dark-brown);
+      font-weight: 500;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-family: inherit;
+    }
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .form-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .error-msg {
+      color: #e74c3c;
+      text-align: center;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="admin-container">
+    <!-- LOGIN -->
+    <div class="admin-login" id="loginPanel">
+      <h2>🔐 Admin Casa Apuliae</h2>
+      <input type="password" id="adminPassword" placeholder="Inserisci password">
+      <button onclick="login()">Accedi</button>
+      <p class="error-msg" id="loginError"></p>
+    </div>
+
+    <!-- ADMIN PANEL -->
+    <div class="admin-panel" id="adminPanel">
+      <div class="admin-header">
+        <h1>Gestione Eventi</h1>
+        <div>
+          <button class="admin-btn admin-btn--secondary" onclick="logout()">Logout</button>
+          <button class="admin-btn" onclick="showForm()">+ Nuovo Evento</button>
+        </div>
+      </div>
+
+      <!-- LISTA EVENTI -->
+      <div class="events-list" id="eventsList">
+        <!-- Eventi caricati dinamicamente -->
+      </div>
+
+      <!-- FORM AGGIUNGI/MODIFICA -->
+      <div class="event-form" id="eventForm">
+        <h2 id="formTitle">Nuovo Evento</h2>
+        <input type="hidden" id="eventId">
+        
+        <div class="form-group">
+          <label>Titolo Evento</label>
+          <input type="text" id="eventTitle" placeholder="es: Colazione di Natale">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Data</label>
+            <input type="text" id="eventDate" placeholder="es: 25 Dicembre 2024">
+          </div>
+          <div class="form-group">
+            <label>Ora</label>
+            <input type="text" id="eventTime" placeholder="es: 08:30 - 10:30">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Descrizione</label>
+          <textarea id="eventDesc" placeholder="Descrivi l'evento..."></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Prezzo</label>
+            <input type="text" id="eventPrice" placeholder="es: 35€ a persona">
+          </div>
+          <div class="form-group">
+            <label>URL Immagine</label>
+            <input type="text" id="eventImage" placeholder="es: public/images/evento.jpg">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Stato</label>
+          <select id="eventActive">
+            <option value="true">Attivo</option>
+            <option value="false">Nascosto</option>
+          </select>
+        </div>
+
+        <div class="form-actions">
+          <button class="admin-btn" onclick="saveEvent()">💾 Salva</button>
+          <button class="admin-btn admin-btn--secondary" onclick="hideForm()">Annulla</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // PASSWORD (cambiare se necessario)
+    const ADMIN_PASSWORD = 'loredana2024';
+    
+    // Stato
+    let events = [];
+    let isEditing = false;
+
+    // Login
+    function login() {
+      const input = document.getElementById('adminPassword').value;
+      if (input === ADMIN_PASSWORD) {
+        document.getElementById('loginPanel').style.display = 'none';
+        document.getElementById('adminPanel').classList.add('active');
+        loadEvents();
+      } else {
+        document.getElementById('loginError').textContent = 'Password errata!';
+      }
+    }
+
+    // Logout
+    function logout() {
+      document.getElementById('adminPanel').classList.remove('active');
+      document.getElementById('loginPanel').style.display = 'block';
+      document.getElementById('adminPassword').value = '';
+      document.getElementById('loginError').textContent = '';
+    }
+
+    // Carica eventi dal localStorage
+    function loadEvents() {
+      const saved = localStorage.getItem('casaapuliae_events');
+      if (saved) {
+        events = JSON.parse(saved);
+      } else {
+        // Eventi di default
+        events = [
+          {
+            id: 1,
+            titolo: "Colazione Romantica di San Valentino",
+            data: "14 Febbraio 2025",
+            ora: "08:30 - 10:30",
+            descrizione: "Una colazione speciale con prodotti tipici pugliesi...",
+            immagine: "public/images/colazione.jpg",
+            prezzo: "35€ a persona",
+            attivo: true
+          }
+        ];
+      }
+      renderEvents();
+    }
+
+    // Salva eventi
+    function saveEvents() {
+      localStorage.setItem('casaapuliae_events', JSON.stringify(events));
+    }
+
+    // Mostra lista eventi
+    function renderEvents() {
+      const container = document.getElementById('eventsList');
+      container.innerHTML = events.map(event => `
+        <div class="event-card">
+          <img src="${event.immagine}" alt="${event.titolo}" onerror="this.src='public/images/palazzo.jpg'">
+          <div>
+            <h3>${event.titolo}</h3>
+            <p><strong>📅 ${event.data}</strong> | 🕐 ${event.ora}</p>
+            <p>${event.descrizione.substring(0, 100)}...</p>
+            <p>💰 ${event.prezzo} | ${event.attivo ? '✅ Attivo' : '❌ Nascosto'}</p>
+          </div>
+          <div class="actions">
+            <button class="admin-btn" onclick="editEvent(${event.id})">✏️</button>
+            <button class="admin-btn admin-btn--danger" onclick="deleteEvent(${event.id})">🗑️</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Mostra form
+    function showForm() {
+      isEditing = false;
+      document.getElementById('formTitle').textContent = 'Nuovo Evento';
+      document.getElementById('eventForm').classList.add('active');
+      clearForm();
+    }
+
+    // Nascondi form
+    function hideForm() {
+      document.getElementById('eventForm').classList.remove('active');
+    }
+
+    // Pulisci form
+    function clearForm() {
+      document.getElementById('eventId').value = '';
+      document.getElementById('eventTitle').value = '';
+      document.getElementById('eventDate').value = '';
+      document.getElementById('eventTime').value = '';
+      document.getElementById('eventDesc').value = '';
+      document.getElementById('eventPrice').value = '';
+      document.getElementById('eventImage').value = '';
+      document.getElementById('eventActive').value = 'true';
+    }
+
+    // Salva evento
+    function saveEvent() {
+      const event = {
+        id: isEditing ? parseInt(document.getElementById('eventId').value) : Date.now(),
+        titolo: document.getElementById('eventTitle').value,
+        data: document.getElementById('eventDate').value,
+        ora: document.getElementById('eventTime').value,
+        descrizione: document.getElementById('eventDesc').value,
+        prezzo: document.getElementById('eventPrice').value,
+        immagine: document.getElementById('eventImage').value || 'public/images/palazzo.jpg',
+        attivo: document.getElementById('eventActive').value === 'true'
+      };
+
+      if (!event.titolo || !event.data) {
+        alert('Compila almeno titolo e data!');
+        return;
+      }
+
+      if (isEditing) {
+        const index = events.findIndex(e => e.id === event.id);
+        events[index] = event;
+      } else {
+        events.push(event);
+      }
+
+      saveEvents();
+      renderEvents();
+      hideForm();
+    }
+
+    // Modifica evento
+    function editEvent(id) {
+      const event = events.find(e => e.id === id);
+      if (!event) return;
+
+      isEditing = true;
+      document.getElementById('formTitle').textContent = 'Modifica Evento';
+      document.getElementById('eventForm').classList.add('active');
+
+      document.getElementById('eventId').value = event.id;
+      document.getElementById('eventTitle').value = event.titolo;
+      document.getElementById('eventDate').value = event.data;
+      document.getElementById('eventTime').value = event.ora;
+      document.getElementById('eventDesc').value = event.descrizione;
+      document.getElementById('eventPrice').value = event.prezzo;
+      document.getElementById('eventImage').value = event.immagine;
+      document.getElementById('eventActive').value = event.attivo.toString();
+    }
+
+    // Elimina evento
+    function deleteEvent(id) {
+      if (confirm('Sei sicura di voler eliminare questo evento?')) {
+        events = events.filter(e => e.id !== id);
+        saveEvents();
+        renderEvents();
+      }
+    }
+
+    // Login con Enter
+    document.getElementById('adminPassword').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') login();
+    });
+  </script>
+</body>
+</html>

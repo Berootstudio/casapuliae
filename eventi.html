@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eventi – Casa Apuliae, Bitonto</title>
+  <meta name="description" content="Scopri gli eventi esclusivi organizzati da Loredana a Casa Apuliae. Colazioni, tour, esperienze romantiche a Bitonto." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="loredana.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__brand">
+        <span class="navbar__brand-main">CASA</span>
+        <span class="navbar__brand-sub">APULIAE</span>
+      </a>
+      <ul class="navbar__links">
+        <li><a href="index.html" class="navbar__link">Home</a></li>
+        <li><a href="le-camere.html" class="navbar__link">Camere</a></li>
+        <li><a href="eventi.html" class="navbar__link navbar__link--active">Eventi</a></li>
+        <li><a href="prenota-ora.html" class="navbar__link">Contatti</a></li>
+        <li><a href="prenota-ora.html" class="navbar__link navbar__link--cta">Prenota ora</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero page-hero--short">
+    <div class="page-hero__bg" style="background-image: url('public/images/palazzo.jpg');"></div>
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <p class="eyebrow eyebrow--light">Esperienze uniche</p>
+      <h1 class="page-hero__title">Eventi Esclusivi</h1>
+      <div class="gold-divider"></div>
+    </div>
+  </section>
+
+  <!-- EVENTI -->
+  <section class="section section--light">
+    <div class="container">
+      <p class="eyebrow" style="text-align: center;">Casa Apuliae</p>
+      <h2 class="section-title" style="text-align: center;">I Nostri Eventi</h2>
+      <div class="gold-divider"></div>
+
+      <!-- Lista Eventi -->
+      <div class="events-grid" id="eventsGrid" style="margin-top: 3rem;">
+        <!-- Eventi caricati dinamicamente -->
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL -->
+  <section class="section section--cream">
+    <div class="container">
+      <p class="eyebrow" style="text-align: center;">Seguici</p>
+      <h2 class="section-title" style="text-align: center;">@casaapuliae</h2>
+      <div class="gold-divider"></div>
+      <p class="section-subtitle" style="text-align: center; margin-bottom: 2rem;">Resta aggiornato sulle nostre novità sui social</p>
+
+      <div class="social-grid" id="socialGrid">
+        <!-- Contenuti social caricati dinamicamente -->
+      </div>
+
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="https://instagram.com/casaapuliae" target="_blank" class="btn-gold" style="margin-right: 1rem;">📷 Instagram</a>
+        <a href="https://facebook.com/casaapuliae" target="_blank" class="btn-gold">👍 Facebook</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--dark">
+    <div class="container" style="text-align: center;">
+      <h2 class="section-title" style="color: var(--gold);">Vuoi organizzare un evento privato?</h2>
+      <p style="color: #fff; margin: 1rem 0 2rem;">Contatta Loredana per eventi personalizzati: compleanni, anniversari, cene private...</p>
+      <a href="prenota-ora.html" class="btn-gold">Richiedi Informazioni</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+
+        <div class="footer__col">
+          <div class="footer__brand">
+            <p class="footer__brand-main">CASA</p>
+            <p class="footer__brand-sub">APULIAE</p>
+          </div>
+          <p class="footer__desc">Un palazzo storico nel cuore di Bitonto, dove lusso e tradizione pugliese si incontrano.</p>
+          <div class="footer__social">
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+            </a>
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__col-title">Contatti</h4>
+          <ul class="footer__list">
+            <li><a href="tel:+393470485464" class="footer__list-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l.87-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              +39 347 048 5464
+            </a></li>
+            <li class="footer__list-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Piazza Cattedrale 23, 2º piano – Bitonto (BA)
+            </li>
+            <li><a href="mailto:casaapuliae@libero.it" class="footer__list-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              casaapuliae@libero.it
+            </a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__col-title">Orari</h4>
+          <ul class="footer__list">
+            <li class="footer__list-item">Check-in: 14:00 – 17:00</li>
+            <li class="footer__list-item">Check-out: entro le 11:00</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2025 Casa Apuliae. Tutti i diritti riservati.</p>
+        <div class="footer__bottom-links">
+          <a href="privacy-policy.html" class="footer__bottom-link">Privacy Policy</a>
+          <a href="privacy-policy.html" class="footer__bottom-link">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Loredana Chatbot -->
+  <script src="loredana.js"></script>
+
+  <script>
+    // Carica eventi dal localStorage
+    function loadEvents() {
+      const saved = localStorage.getItem('casaapuliae_events');
+      let events = [];
+      
+      if (saved) {
+        events = JSON.parse(saved);
+      } else {
+        // Eventi di default
+        events = [
+          {
+            id: 1,
+            titolo: "Colazione Romantica di San Valentino",
+            data: "14 Febbraio 2025",
+            ora: "08:30 - 10:30",
+            descrizione: "Una colazione speciale con prodotti tipici pugliesi, champagne e dolci artigianali. Vista panoramica sulla Concattedrale.",
+            immagine: "public/images/colazione.jpg",
+            prezzo: "35€ a persona",
+            attivo: true
+          },
+          {
+            id: 2,
+            titolo: "Tour dei Frantoi Storici",
+            data: "Ogni Sabato",
+            ora: "09:00 - 13:00",
+            descrizione: "Visita guidata ai frantoi storici di Bitonto con degustazione di olio EVO DOP. Trasporto incluso.",
+            immagine: "public/images/palazzo.jpg",
+            prezzo: "45€ a persona",
+            attivo: true
+          },
+          {
+            id: 3,
+            titolo: "Pacchetto Wedding",
+            data: "Su richiesta",
+            ora: "Check-in 14:00",
+            descrizione: "Per coppie di sposi: champagne, confettata, colazione romantica in camera, late check-out.",
+            immagine: "public/images/camera-virginia.jpg",
+            prezzo: "Da 180€ a notte",
+            attivo: true
+          }
+        ];
+      }
+
+      const activeEvents = events.filter(e => e.attivo);
+      const container = document.getElementById('eventsGrid');
+      
+      if (activeEvents.length === 0) {
+        container.innerHTML = '<p style="text-align: center; color: #666;">Nessun evento programmato al momento.</p>';
+        return;
+      }
+
+      container.innerHTML = activeEvents.map(event => `
+        <div class="event-card" style="display: grid; grid-template-columns: 300px 1fr; gap: 2rem; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+          <div style="background-image: url('${event.immagine}'); background-size: cover; background-position: center; min-height: 220px;" onerror="this.style.backgroundImage='url(public/images/palazzo.jpg)'"></div>
+          <div style="padding: 1.5rem; display: flex; flex-direction: column;">
+            <div style="margin-bottom: 0.5rem; font-size: 0.875rem; color: var(--green);">
+              <span style="margin-right: 1rem;">📅 ${event.data}</span>
+              <span>🕐 ${event.ora}</span>
+            </div>
+            <h3 style="font-family: var(--font-serif); font-size: 1.5rem; color: var(--dark-brown); margin-bottom: 0.75rem;">${event.titolo}</h3>
+            <p style="color: #666; line-height: 1.6; flex: 1;">${event.descrizione}</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #eee;">
+              <span style="font-weight: 600; color: var(--green);">${event.prezzo}</span>
+              <a href="prenota-ora.html" class="btn-gold" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Prenota</a>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Carica contenuti social
+    function loadSocial() {
+      const socialContent = [
+        { img: 'public/images/camera-frida.jpg' },
+        { img: 'public/images/camera-virginia.jpg' },
+        { img: 'public/images/camera-diana.jpg' },
+        { img: 'public/images/colazione.jpg' },
+        { img: 'public/images/palazzo.jpg' },
+        { img: 'public/images/camera-diana-2.jpg' }
+      ];
+
+      const container = document.getElementById('socialGrid');
+      container.innerHTML = socialContent.map(item => `
+        <div style="position: relative; aspect-ratio: 1; overflow: hidden; border-radius: 4px; cursor: pointer;" onmouseover="this.querySelector('.overlay').style.opacity='1'" onmouseout="this.querySelector('.overlay').style.opacity='0'">
+          <div style="width: 100%; height: 100%; background-image: url('${item.img}'); background-size: cover; background-position: center; transition: transform 0.3s ease;"></div>
+          <div class="overlay" style="position: absolute; inset: 0; background: rgba(29,79,77,0.7); opacity: 0; transition: opacity 0.3s ease; display: flex; align-items: center; justify-content: center; font-size: 2rem;">📷</div>
+        </div>
+      `).join('');
+    }
+
+    // Inizializza
+    document.addEventListener('DOMContentLoaded', function() {
+      loadEvents();
+      loadSocial();
+    });
+  </script>
+
+  <style>
+    .events-grid {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    @media (max-width: 768px) {
+      .event-card {
+        grid-template-columns: 1fr !important;
+      }
+      .social-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+
+</body>
+</html>
