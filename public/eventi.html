@@ -32,7 +32,7 @@
 
   <!-- HERO -->
   <section class="page-hero page-hero--short">
-    <div class="page-hero__bg" style="background-image: url('public/images/palazzo.jpg');"></div>
+    <div class="page-hero__bg" style="background-image: url('Foto/Palazzo - Alitti/palazzo.jpg');"></div>
     <div class="page-hero__overlay"></div>
     <div class="page-hero__content">
       <p class="eyebrow eyebrow--light">Esperienze uniche</p>
@@ -162,7 +162,7 @@
             data: "14 Febbraio 2025",
             ora: "08:30 - 10:30",
             descrizione: "Una colazione speciale con prodotti tipici pugliesi, champagne e dolci artigianali. Vista panoramica sulla Concattedrale.",
-            immagine: "public/images/colazione.jpg",
+            immagine: "Foto/Colazione/colazione.jpg",
             prezzo: "35€ a persona",
             attivo: true
           },
@@ -172,7 +172,7 @@
             data: "Ogni Sabato",
             ora: "09:00 - 13:00",
             descrizione: "Visita guidata ai frantoi storici di Bitonto con degustazione di olio EVO DOP. Trasporto incluso.",
-            immagine: "public/images/palazzo.jpg",
+            immagine: "Foto/Palazzo - Alitti/palazzo.jpg",
             prezzo: "45€ a persona",
             attivo: true
           },
@@ -182,7 +182,7 @@
             data: "Su richiesta",
             ora: "Check-in 14:00",
             descrizione: "Per coppie di sposi: champagne, confettata, colazione romantica in camera, late check-out.",
-            immagine: "public/images/camera-virginia.jpg",
+            immagine: "Foto/Camera - Virginia/virginia.jpg",
             prezzo: "Da 180€ a notte",
             attivo: true
           }
@@ -199,7 +199,7 @@
 
       container.innerHTML = activeEvents.map(event => `
         <div class="event-card" style="display: grid; grid-template-columns: 300px 1fr; gap: 2rem; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin-bottom: 2rem;">
-          <div style="background-image: url('${event.immagine}'); background-size: cover; background-position: center; min-height: 220px;" onerror="this.style.backgroundImage='url(public/images/palazzo.jpg)'"></div>
+          <div style="background-image: url('${event.immagine}'); background-size: cover; background-position: center; min-height: 220px;" onerror="this.style.backgroundImage='url(Foto/Palazzo - Alitti/palazzo.jpg)'"></div>
           <div style="padding: 1.5rem; display: flex; flex-direction: column;">
             <div style="margin-bottom: 0.5rem; font-size: 0.875rem; color: var(--green);">
               <span style="margin-right: 1rem;">📅 ${event.data}</span>
@@ -219,12 +219,12 @@
     // Carica contenuti social
     function loadSocial() {
       const socialContent = [
-        { img: 'public/images/camera-frida.jpg' },
-        { img: 'public/images/camera-virginia.jpg' },
-        { img: 'public/images/camera-diana.jpg' },
-        { img: 'public/images/colazione.jpg' },
-        { img: 'public/images/palazzo.jpg' },
-        { img: 'public/images/camera-diana-2.jpg' }
+        { img: 'Foto/Camera - Frida/frida.jpg' },
+        { img: 'Foto/Camera - Virginia/virginia.jpg' },
+        { img: 'Foto/Camera - Lady/diana.jpg' },
+        { img: 'Foto/Colazione/colazione.jpg' },
+        { img: 'Foto/Palazzo - Alitti/palazzo.jpg' },
+        { img: 'Foto/Camera - Lady/diana-2.jpg' }
       ];
 
       const container = document.getElementById('socialGrid');
