@@ -1,6 +1,11 @@
 {
   "version": 2,
-  "routes": [
-    { "src": "/api/(.*)", "dest": "/api/$1" }
+  "functions": {
+    "api/save.js": {
+      "maxDuration": 10
+    }
+  },
+  "rewrites": [
+    { "source": "/api/save", "destination": "/api/save" }
   ]
 }
