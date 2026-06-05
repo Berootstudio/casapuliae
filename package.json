@@ -1,0 +1,9 @@
+{
+  "name": "casapuliae",
+  "version": "1.0.0",
+  "description": "Casa Apuliae Website with Admin",
+  "scripts": {
+    "test": "echo 'No tests'"
+  },
+  "dependencies": {}
+}

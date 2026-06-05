@@ -1,7 +1,7 @@
 // API Serverless per salvare su GitHub
 // Deploy su Vercel: https://vercel.com
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   // Solo POST permesso
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
