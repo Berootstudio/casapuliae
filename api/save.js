@@ -2,6 +2,16 @@
 // Deploy su Vercel: https://vercel.com
 
 module.exports = async function handler(req, res) {
+  // CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  
+  // Handle OPTIONS (preflight)
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  
   // Solo POST permesso
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -21,8 +31,11 @@ module.exports = async function handler(req, res) {
     const repo = process.env.GITHUB_REPO || 'casapuliae';
     
     if (!token) {
+      console.error('GITHUB_TOKEN not set');
       return res.status(500).json({ error: 'GitHub token not configured' });
     }
+    
+    console.log('Saving file:', filename, 'to', owner + '/' + repo);
 
     // Ottieni SHA del file esistente (se esiste)
     let sha = null;
