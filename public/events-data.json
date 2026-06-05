@@ -1,0 +1,55 @@
+{
+  "eventi": [
+    {
+      "id": 1,
+      "titolo": "Colazione Romantica di San Valentino",
+      "data": "14 Febbraio 2025",
+      "ora": "08:30 - 10:30",
+      "descrizione": "Una colazione speciale con prodotti tipici pugliesi, champagne e dolci artigianali. Vista panoramica sulla Concattedrale.",
+      "immagine": "public/images/colazione.jpg",
+      "prezzo": "35€ a persona",
+      "prenotazione": true,
+      "attivo": true
+    },
+    {
+      "id": 2,
+      "titolo": "Tour dei Frantoi Storici di Bitonto",
+      "data": "Ogni Sabato",
+      "ora": "09:00 - 13:00",
+      "descrizione": "Visita guidata ai frantoi storici con degustazione di olio EVO DOP Bitonto. Trasporto incluso.",
+      "immagine": "public/images/palazzo.jpg",
+      "prezzo": "45€ a persona",
+      "prenotazione": true,
+      "attivo": true
+    },
+    {
+      "id": 3,
+      "titolo": "Pacchetto Wedding - Fuga Romantica",
+      "data": "Su richiesta",
+      "ora": "Check-in 14:00",
+      "descrizione": "Per coppie di sposi: champagne in camera, confettata artigianale, colazione romantica in camera, late check-out.",
+      "immagine": "public/images/camera-virginia.jpg",
+      "prezzo": "Da 180€ a notte",
+      "prenotazione": true,
+      "attivo": true
+    }
+  ],
+  "social": [
+    {
+      "id": 1,
+      "tipo": "instagram",
+      "url": "https://instagram.com/casaapuliae",
+      "titolo": "Nuova Suite Virginia Woolf",
+      "immagine": "public/images/camera-virginia-2.jpg",
+      "data": "2 giorni fa"
+    },
+    {
+      "id": 2,
+      "tipo": "facebook",
+      "url": "https://facebook.com/casaapuliae",
+      "titolo": "Colazione in terrazza",
+      "immagine": "public/images/colazione.jpg",
+      "data": "5 giorni fa"
+    }
+  ]
+}
