@@ -1,15 +1,5 @@
 [
   {
-    "id": 1,
-    "titolo": "Colazione Romantica di San Valentino",
-    "data": "14 Febbraio 2025",
-    "ora": "08:30 - 10:30",
-    "descrizione": "Una colazione speciale con prodotti tipici pugliesi, champagne e dolci artigianali. Vista panoramica sulla Concattedrale.",
-    "immagine": "Foto/Colazione/colazione.jpg",
-    "prezzo": "35€ a persona",
-    "attivo": true
-  },
-  {
     "id": 2,
     "titolo": "Tour dei Frantoi Storici",
     "data": "Ogni Sabato",
