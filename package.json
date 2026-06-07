@@ -2,6 +2,7 @@
   "name": "casapuliae",
   "version": "1.0.0",
   "description": "Casa Apuliae Website with Admin",
+  "type": "module",
   "scripts": {
     "build": "echo 'Static site - no build needed'",
     "test": "echo 'No tests'"
