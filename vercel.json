@@ -1,5 +1,25 @@
 {
   "version": 2,
+  "builds": [
+    {
+      "src": "api/save.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "public/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/save",
+      "dest": "api/save.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "public/$1"
+    }
+  ],
   "functions": {
     "api/save.js": {
       "maxDuration": 10
