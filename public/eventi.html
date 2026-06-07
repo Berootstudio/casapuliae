@@ -146,56 +146,24 @@
   <script src="loredana.js"></script>
 
   <script>
-    // Carica eventi dal localStorage
-    function loadEvents() {
-      const saved = localStorage.getItem('casaapuliae_events');
-      let events = [];
-      
-      if (saved) {
-        events = JSON.parse(saved);
-      } else {
-        // Eventi di default
-        events = [
-          {
-            id: 1,
-            titolo: "Colazione Romantica di San Valentino",
-            data: "14 Febbraio 2025",
-            ora: "08:30 - 10:30",
-            descrizione: "Una colazione speciale con prodotti tipici pugliesi, champagne e dolci artigianali. Vista panoramica sulla Concattedrale.",
-            immagine: "Foto/Colazione/colazione.jpg",
-            prezzo: "35€ a persona",
-            attivo: true
-          },
-          {
-            id: 2,
-            titolo: "Tour dei Frantoi Storici",
-            data: "Ogni Sabato",
-            ora: "09:00 - 13:00",
-            descrizione: "Visita guidata ai frantoi storici di Bitonto con degustazione di olio EVO DOP. Trasporto incluso.",
-            immagine: "Foto/Palazzo - Alitti/palazzo.jpg",
-            prezzo: "45€ a persona",
-            attivo: true
-          },
-          {
-            id: 3,
-            titolo: "Pacchetto Wedding",
-            data: "Su richiesta",
-            ora: "Check-in 14:00",
-            descrizione: "Per coppie di sposi: champagne, confettata, colazione romantica in camera, late check-out.",
-            immagine: "Foto/Camera - Virginia/virginia.jpg",
-            prezzo: "Da 180€ a notte",
-            attivo: true
-          }
-        ];
-      }
-
-      const activeEvents = events.filter(e => e.attivo);
+    // Carica eventi da content/events.json
+    async function loadEvents() {
       const container = document.getElementById('eventsGrid');
+      container.innerHTML = '<p style="text-align: center; color: #666;">Caricamento eventi...</p>';
       
-      if (activeEvents.length === 0) {
-        container.innerHTML = '<p style="text-align: center; color: #666;">Nessun evento programmato al momento.</p>';
-        return;
-      }
+      try {
+        const response = await fetch('content/events.json');
+        if (!response.ok) {
+          throw new Error('Errore caricamento eventi');
+        }
+        const events = await response.json();
+        
+        const activeEvents = events.filter(e => e.attivo);
+        
+        if (activeEvents.length === 0) {
+          container.innerHTML = '<p style="text-align: center; color: #666;">Nessun evento programmato al momento.</p>';
+          return;
+        }
 
       container.innerHTML = activeEvents.map(event => `
         <div class="event-card" style="display: grid; grid-template-columns: 300px 1fr; gap: 2rem; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin-bottom: 2rem;">
@@ -214,6 +182,10 @@
           </div>
         </div>
       `).join('');
+      } catch (error) {
+        console.error('Errore caricamento eventi:', error);
+        container.innerHTML = '<p style="text-align: center; color: #c00;">Errore caricamento eventi. Riprova più tardi.</p>';
+      }
     }
 
     // Carica contenuti social
