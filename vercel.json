@@ -4,8 +4,5 @@
     "api/save.js": {
       "maxDuration": 10
     }
-  },
-  "rewrites": [
-    { "source": "/api/save", "destination": "/api/save" }
-  ]
+  }
 }
