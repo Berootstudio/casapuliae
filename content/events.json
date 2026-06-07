@@ -1,15 +1,5 @@
 [
   {
-    "id": 2,
-    "titolo": "Tour dei Frantoi Storici",
-    "data": "Ogni Sabato",
-    "ora": "09:00 - 13:00",
-    "descrizione": "Visita guidata ai frantoi storici di Bitonto con degustazione di olio EVO DOP. Trasporto incluso.",
-    "immagine": "Foto/Palazzo - Alitti/palazzo.jpg",
-    "prezzo": "45€ a persona",
-    "attivo": true
-  },
-  {
     "id": 3,
     "titolo": "Pacchetto Wedding",
     "data": "Su richiesta",
