@@ -8,31 +8,31 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="loredana.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/loredana.css" />
 </head>
 <body>
 
   <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
     <div class="navbar__inner">
-      <a href="index.html" class="navbar__brand">
+      <a href="../index.html" class="navbar__brand">
         <span class="navbar__brand-main">CASA</span>
         <span class="navbar__brand-sub">APULIAE</span>
       </a>
       <ul class="navbar__links">
-        <li><a href="index.html" class="navbar__link">Home</a></li>
-        <li><a href="le-camere.html" class="navbar__link">Camere</a></li>
-        <li><a href="eventi.html" class="navbar__link navbar__link--active">Eventi</a></li>
-        <li><a href="prenota-ora.html" class="navbar__link">Contatti</a></li>
-        <li><a href="prenota-ora.html" class="navbar__link navbar__link--cta">Prenota ora</a></li>
+        <li><a href="../index.html" class="navbar__link">Home</a></li>
+        <li><a href="./le-camere.html" class="navbar__link">Camere</a></li>
+        <li><a href="./eventi.html" class="navbar__link navbar__link--active">Eventi</a></li>
+        <li><a href="./prenota-ora.html" class="navbar__link">Contatti</a></li>
+        <li><a href="./prenota-ora.html" class="navbar__link navbar__link--cta">Prenota ora</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- HERO -->
   <section class="page-hero page-hero--short">
-    <div class="page-hero__bg" style="background-image: url('Foto/Palazzo - Alitti/palazzo.jpg');"></div>
+    <div class="page-hero__bg" style="background-image: url('../assets/img/palazzo/palazzo.jpg');"></div>
     <div class="page-hero__overlay"></div>
     <div class="page-hero__content">
       <p class="eyebrow eyebrow--light">Esperienze uniche</p>
@@ -79,7 +79,7 @@
     <div class="container" style="text-align: center;">
       <h2 class="section-title" style="color: var(--gold);">Vuoi organizzare un evento privato?</h2>
       <p style="color: #fff; margin: 1rem 0 2rem;">Contatta Loredana per eventi personalizzati: compleanni, anniversari, cene private...</p>
-      <a href="prenota-ora.html" class="btn-gold">Richiedi Informazioni</a>
+      <a href="./prenota-ora.html" class="btn-gold">Richiedi Informazioni</a>
     </div>
   </section>
 
@@ -133,17 +133,16 @@
       </div>
 
       <div class="footer__bottom">
-        <p>© 2025 Casa Apuliae. Tutti i diritti riservati.</p>
+        <p>© <span class="copyright-year">2025</span> Casa Apuliae. Tutti i diritti riservati.</p>
         <div class="footer__bottom-links">
-          <a href="privacy-policy.html" class="footer__bottom-link">Privacy Policy</a>
-          <a href="privacy-policy.html" class="footer__bottom-link">Cookie Policy</a>
+          <a href="./privacy-policy.html" class="footer__bottom-link">Privacy Policy</a>
+          <a href="./privacy-policy.html" class="footer__bottom-link">Cookie Policy</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- Loredana Chatbot -->
-  <script src="loredana.js"></script>
+  <script src="../assets/js/loredana.js"></script>
 
   <script>
     // Carica eventi da content/events.json
@@ -152,7 +151,7 @@
       container.innerHTML = '<p style="text-align: center; color: #666;">Caricamento eventi...</p>';
       
       try {
-        const response = await fetch('content/events.json');
+        const response = await fetch('../content/events.json');
         if (!response.ok) {
           throw new Error('Errore caricamento eventi');
         }
@@ -167,7 +166,7 @@
 
       container.innerHTML = activeEvents.map(event => `
         <div class="event-card" style="display: grid; grid-template-columns: 300px 1fr; gap: 2rem; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin-bottom: 2rem;">
-          <div style="background-image: url('${event.immagine}'); background-size: cover; background-position: center; min-height: 220px;" onerror="this.style.backgroundImage='url(Foto/Palazzo - Alitti/palazzo.jpg)'"></div>
+          <div style="background-image: url('${event.immagine}'); background-size: cover; background-position: center; min-height: 220px;" onerror="this.style.backgroundImage='url(../assets/img/palazzo/palazzo.jpg)'"></div>
           <div style="padding: 1.5rem; display: flex; flex-direction: column;">
             <div style="margin-bottom: 0.5rem; font-size: 0.875rem; color: var(--green);">
               <span style="margin-right: 1rem;">📅 ${event.data}</span>
@@ -177,7 +176,7 @@
             <p style="color: #666; line-height: 1.6; flex: 1;">${event.descrizione}</p>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #eee;">
               <span style="font-weight: 600; color: var(--green);">${event.prezzo}</span>
-              <a href="prenota-ora.html" class="btn-gold" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Prenota</a>
+              <a href="./prenota-ora.html" class="btn-gold" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Prenota</a>
             </div>
           </div>
         </div>
@@ -191,12 +190,12 @@
     // Carica contenuti social
     function loadSocial() {
       const socialContent = [
-        { img: 'Foto/Camera - Frida/frida.jpg' },
-        { img: 'Foto/Camera - Virginia/virginia.jpg' },
-        { img: 'Foto/Camera - Lady/diana.jpg' },
-        { img: 'Foto/Colazione/colazione.jpg' },
-        { img: 'Foto/Palazzo - Alitti/palazzo.jpg' },
-        { img: 'Foto/Camera - Lady/diana-2.jpg' }
+        { img: '../assets/img/frida/frida.jpg' },
+        { img: '../assets/img/virginia/virginia-2.jpg' },
+        { img: '../assets/img/diana/diana.jpg' },
+        { img: '../assets/img/colazione/colazione-2.jpg' },
+        { img: '../assets/img/palazzo/palazzo-2.jpg' },
+        { img: '../assets/img/frida/frida-4.jpg' }
       ];
 
       const container = document.getElementById('socialGrid');

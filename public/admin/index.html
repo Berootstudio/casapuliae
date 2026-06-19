@@ -392,12 +392,6 @@
         <div class="menu-item" onclick="showPage('contacts', this)">
           <span>📞 Contatti</span>
         </div>
-        <div class="menu-item" onclick="showPage('chatbot', this)">
-          <span>🤖 Assistente Virtuale</span>
-        </div>
-        <div class="menu-item" onclick="showPage('homepage', this)">
-          <span>🏠 Homepage</span>
-        </div>
       </nav>
       <div class="sidebar-footer">
         <button class="btn-logout" onclick="logout()">🚪 Logout</button>
@@ -425,7 +419,19 @@
             </div>
             <div class="form-group">
               <label>Data</label>
-              <input type="text" id="eventDate" placeholder="Es: 25 Dicembre 2024">
+              <input type="text" id="eventDate" placeholder="Es: 25 Dicembre 2025">
+            </div>
+            <div class="form-group">
+              <label>Ora</label>
+              <input type="text" id="eventOra" placeholder="Es: 19:00 - 22:00">
+            </div>
+            <div class="form-group">
+              <label>Prezzo</label>
+              <input type="text" id="eventPrezzo" placeholder="Es: 35€ a persona">
+            </div>
+            <div class="form-group">
+              <label>Immagine (URL o percorso)</label>
+              <input type="text" id="eventImmagine" placeholder="Es: ../assets/img/palazzo/palazzo.jpg">
             </div>
             <div class="form-group">
               <label>Descrizione</label>
@@ -473,67 +479,12 @@
         </div>
       </div>
 
-      <!-- PAGE: CHATBOT -->
-      <div id="page-chatbot" class="page">
-        <div class="page-header">
-          <h2>🤖 Assistente Virtuale</h2>
-        </div>
-        
-        <div class="card">
-          <div class="card-header">
-            <h3>Risposte Predefinite</h3>
-          </div>
-          <div class="card-body">
-            <div class="form-group">
-              <label>Saluto iniziale</label>
-              <textarea id="chatGreeting">Ciao! Sono l'assistente virtuale di Casa Apuliae. Come posso aiutarti?</textarea>
-            </div>
-            <div class="form-group">
-              <label>Risposta: Orari check-in/check-out</label>
-              <textarea id="chatCheckin">Il check-in è dalle 15:00, il check-out entro le 11:00. Se hai esigenze diverse contattaci!</textarea>
-            </div>
-            <div class="form-group">
-              <label>Risposta: Prezzi camere</label>
-              <textarea id="chatPrices">Le nostre camere partono da 80€ a notte. Contattaci per un preventivo personalizzato!</textarea>
-            </div>
-            <div class="form-group">
-              <label>Risposta: Come prenotare</label>
-              <textarea id="chatBooking">Puoi prenotare direttamente dal nostro sito nella sezione "Prenota Ora" o chiamandoci al +39 347 048 5464</textarea>
-            </div>
-            <button class="btn-save" onclick="saveChatbot()">💾 Salva Risposte</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- PAGE: HOMEPAGE -->
-      <div id="page-homepage" class="page">
-        <div class="page-header">
-          <h2>🏠 Homepage</h2>
-        </div>
-        
-        <div class="card">
-          <div class="card-header">
-            <h3>Hero Section</h3>
-          </div>
-          <div class="card-body">
-            <div class="form-group">
-              <label>Titolo</label>
-              <input type="text" id="heroTitle" value="Casa Apuliae">
-            </div>
-            <div class="form-group">
-              <label>Sottotitolo</label>
-              <textarea id="heroSubtitle">Lusso & Tradizione nel cuore di Bitonto</textarea>
-            </div>
-            <button class="btn-save" onclick="saveHomepage()">💾 Salva Homepage</button>
-          </div>
-        </div>
-      </div>
     </main>
   </div>
 
   <script>
     const ADMIN_USER = 'admin';
-    const ADMIN_PASS = 'casapuliae2024';
+    const ADMIN_PASS_HASH = '5277941c64e6d73e5c006f267429eb9ede42987cb6d92e2e7fd9a4346ff55935';
     let eventsData = [];
 
     if (sessionStorage.getItem('admin_logged_in') === 'true') {
@@ -541,11 +492,19 @@
       loadEvents();
     }
 
-    function login() {
+    async function hashPassword(str) {
+      const msgBuffer = new TextEncoder().encode(str);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function login() {
       const user = document.getElementById('username').value;
       const pass = document.getElementById('password').value;
+      const hash = await hashPassword(pass);
       
-      if (user === ADMIN_USER && pass === ADMIN_PASS) {
+      if (user === ADMIN_USER && hash === ADMIN_PASS_HASH) {
         sessionStorage.setItem('admin_logged_in', 'true');
         showDashboard();
         loadEvents();
@@ -604,17 +563,26 @@
     }
 
     function addEvent() {
+      const title = document.getElementById('eventTitle').value.trim();
+      if (!title) { alert('Inserisci almeno il titolo!'); return; }
       const event = {
         id: Date.now(),
-        title: document.getElementById('eventTitle').value,
-        date: document.getElementById('eventDate').value,
-        description: document.getElementById('eventDesc').value
+        titolo: title,
+        data: document.getElementById('eventDate').value.trim(),
+        ora: document.getElementById('eventOra').value.trim(),
+        prezzo: document.getElementById('eventPrezzo').value.trim(),
+        immagine: document.getElementById('eventImmagine').value.trim() || '../assets/img/palazzo/palazzo.jpg',
+        descrizione: document.getElementById('eventDesc').value.trim(),
+        attivo: true
       };
       eventsData.push(event);
       saveEvents();
       renderEvents();
       document.getElementById('eventTitle').value = '';
       document.getElementById('eventDate').value = '';
+      document.getElementById('eventOra').value = '';
+      document.getElementById('eventPrezzo').value = '';
+      document.getElementById('eventImmagine').value = '';
       document.getElementById('eventDesc').value = '';
     }
 
@@ -626,7 +594,7 @@
     }
 
     function saveEvents() {
-      saveToGitHub('content/events.json', JSON.stringify(eventsData, null, 2), 'Aggiornamento eventi');
+      saveToGitHub('public/content/events.json', JSON.stringify(eventsData, null, 2), 'Aggiornamento eventi');
     }
 
     function renderEvents() {
@@ -638,9 +606,10 @@
       list.innerHTML = eventsData.map(e => `
         <div class="event-item">
           <div>
-            <h4>${e.title}</h4>
-            <p>${e.date}</p>
-            <small>${e.description}</small>
+            <h4>${e.titolo || e.title || '(senza titolo)'}</h4>
+            <p>${e.data || e.date || ''} ${e.ora ? '– ' + e.ora : ''}</p>
+            <small>${e.descrizione || e.description || ''}</small>
+            ${e.prezzo ? `<small style="color:var(--accent);font-weight:600;"> · ${e.prezzo}</small>` : ''}
           </div>
           <button class="btn-delete" onclick="deleteEvent(${e.id})">Elimina</button>
         </div>
@@ -648,7 +617,7 @@
     }
 
     function loadEvents() {
-      fetch('/content/events.json')
+      fetch('../content/events.json')
         .then(r => r.json())
         .then(data => { eventsData = data || []; renderEvents(); })
         .catch(() => { eventsData = []; renderEvents(); });
@@ -663,23 +632,6 @@
       saveToGitHub('content/contacts.json', JSON.stringify(data, null, 2), 'Aggiornamento contatti');
     }
 
-    function saveChatbot() {
-      const data = {
-        greeting: document.getElementById('chatGreeting').value,
-        checkin: document.getElementById('chatCheckin').value,
-        prices: document.getElementById('chatPrices').value,
-        booking: document.getElementById('chatBooking').value
-      };
-      saveToGitHub('content/chatbot.json', JSON.stringify(data, null, 2), 'Aggiornamento chatbot');
-    }
-
-    function saveHomepage() {
-      const data = {
-        heroTitle: document.getElementById('heroTitle').value,
-        heroSubtitle: document.getElementById('heroSubtitle').value
-      };
-      saveToGitHub('content/homepage.json', JSON.stringify(data, null, 2), 'Aggiornamento homepage');
-    }
   </script>
 </body>
 </html>

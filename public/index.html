@@ -8,7 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/loredana.css" />
 </head>
 <body>
   <!-- NAVBAR -->
@@ -20,10 +21,10 @@
       </a>
       <ul class="navbar__links">
         <li><a href="index.html" class="navbar__link">Home</a></li>
-        <li><a href="le-camere.html" class="navbar__link">Camere</a></li>
-        <li><a href="eventi.html" class="navbar__link">Eventi</a></li>
-        <li><a href="prenota-ora.html" class="navbar__link">Contatti</a></li>
-        <li><a href="prenota-ora.html" class="navbar__link navbar__link--cta">Prenota ora</a></li>
+        <li><a href="pages/le-camere.html" class="navbar__link">Camere</a></li>
+        <li><a href="pages/eventi.html" class="navbar__link">Eventi</a></li>
+        <li><a href="pages/prenota-ora.html" class="navbar__link">Contatti</a></li>
+        <li><a href="pages/prenota-ora.html" class="navbar__link navbar__link--cta">Prenota ora</a></li>
       </ul>
     </div>
   </nav>
@@ -31,16 +32,16 @@
   <!-- HERO CAROUSEL -->
   <section class="hero" id="hero">
     <div class="hero-carousel">
-      <div class="hero-carousel__slide active" style="background-image: url('Foto/Camera - Frida/frida.jpg');"></div>
-      <div class="hero-carousel__slide" style="background-image: url('Foto/Camera - Frida/frida.jpg');"></div>
-      <div class="hero-carousel__slide" style="background-image: url('Foto/Camera - Frida/frida.jpg');"></div>
-      <div class="hero-carousel__slide" style="background-image: url('Foto/Camera - Virginia/virginia.jpg');"></div>
-      <div class="hero-carousel__slide" style="background-image: url('Foto/Camera - Virginia/virginia.jpg');"></div>
-      <div class="hero-carousel__slide" style="background-image: url('Foto/Camera - Virginia/virginia.jpg');"></div>
-      <div class="hero-carousel__slide" style="background-image: url('Foto/Camera - Lady/diana.jpg');"></div>
-      <div class="hero-carousel__slide" style="background-image: url('Foto/Camera - Lady/diana-2.jpg');"></div>
-      <div class="hero-carousel__slide" style="background-image: url('Foto/Palazzo - Alitti/palazzo.jpg');"></div>
-      <div class="hero-carousel__slide" style="background-image: url('Foto/Colazione/colazione.jpg');"></div>
+      <div class="hero-carousel__slide active" style="background-image: url('assets/img/frida/frida.jpg');"></div>
+      <div class="hero-carousel__slide" style="background-image: url('assets/img/frida/frida-2.jpg');"></div>
+      <div class="hero-carousel__slide" style="background-image: url('assets/img/frida/frida-3.jpg');"></div>
+      <div class="hero-carousel__slide" style="background-image: url('assets/img/virginia/virginia.jpg');"></div>
+      <div class="hero-carousel__slide" style="background-image: url('assets/img/virginia/virginia-2.jpg');"></div>
+      <div class="hero-carousel__slide" style="background-image: url('assets/img/virginia/virginia-3.jpg');"></div>
+      <div class="hero-carousel__slide" style="background-image: url('assets/img/diana/diana.jpg');"></div>
+      <div class="hero-carousel__slide" style="background-image: url('assets/img/diana/diana-2.jpg');"></div>
+      <div class="hero-carousel__slide" style="background-image: url('assets/img/palazzo/palazzo.jpg');"></div>
+      <div class="hero-carousel__slide" style="background-image: url('assets/img/colazione/colazione.jpg');"></div>
     </div>
     <div class="hero__overlay"></div>
     <div class="hero__content">
@@ -49,8 +50,8 @@
       <div class="gold-divider"></div>
       <p class="hero__sub">Suite di lusso nel cuore del centro storico, con vista mozzafiato sulla Concattedrale di Bitonto.</p>
       <div class="hero__btns">
-        <a href="prenota-ora.html" class="btn-gold">Prenota ora</a>
-        <a href="le-camere.html" class="btn-outline-gold">Scopri le camere</a>
+        <a href="pages/prenota-ora.html" class="btn-gold">Prenota ora</a>
+        <a href="pages/le-camere.html" class="btn-outline-gold">Scopri le camere</a>
       </div>
     </div>
     <!-- Navigation arrows -->
@@ -120,10 +121,10 @@
   </section>
 
   <!-- PALAZZO -->
-  <section class="section section--light">
+  <section class="section section--light" data-aos="fade-up">
     <div class="container grid-2">
       <div class="img-block">
-        <div class="img-block__inner" style="background-image: url('Foto/Palazzo - Alitti/palazzo.jpg');"></div>
+        <div class="img-block__inner" style="background-image: url('assets/img/palazzo/palazzo.jpg');"></div>
       </div>
       <div class="text-block">
         <p class="eyebrow">La nostra storia</p>
@@ -131,13 +132,13 @@
         <div class="gold-divider gold-divider--left"></div>
         <p class="body-text">Un palazzo storico nel cuore pulsante di Bitonto, custode di secoli di storia pugliese. Ogni dettaglio racconta una storia, ogni spazio invita alla scoperta di un'autenticità rara, dove il lusso si fonde con la tradizione.</p>
         <p class="body-text">A pochi passi dalla splendida Concattedrale, il palazzo offre un'esperienza unica che unisce comfort contemporaneo e charme storico.</p>
-        <a href="le-camere.html" class="btn-gold" style="align-self:flex-start; margin-top: 1rem;">Scopri le camere</a>
+        <a href="pages/le-camere.html" class="btn-gold" style="align-self:flex-start; margin-top: 1rem;">Scopri le camere</a>
       </div>
     </div>
   </section>
 
   <!-- CAMERE -->
-  <section class="section section--cream">
+  <section class="section section--cream" data-aos="fade-up">
     <div class="container">
       <div class="section-header">
         <p class="eyebrow">Dove dormire</p>
@@ -146,9 +147,9 @@
       </div>
       <div class="cards-grid">
 
-        <div class="card">
+        <div class="card" data-aos="fade-up" data-aos-delay="0">
           <div class="card__img-wrap">
-            <div class="card__img" style="background-image: url('Foto/Camera - Frida/frida.jpg');"></div>
+            <div class="card__img" style="background-image: url('assets/img/frida/frida.jpg');"></div>
             <div class="card__overlay"></div>
             <span class="card__badge">Camera Matrimoniale Deluxe</span>
             <span class="card__badge-promo">-20%</span>
@@ -161,13 +162,13 @@
               <span class="price-note">/notte</span>
             </div>
             <p class="card__desc">Un mix di design e carattere. Doccia panoramica con cromoterapia, arredi ricercati e bagno privato.</p>
-            <a href="le-camere.html" class="card__link">Scopri di più →</a>
+            <a href="pages/le-camere.html" class="card__link">Scopri di più →</a>
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-aos="fade-up" data-aos-delay="120">
           <div class="card__img-wrap">
-            <div class="card__img" style="background-image: url('Foto/Camera - Virginia/virginia.jpg');"></div>
+            <div class="card__img" style="background-image: url('assets/img/virginia/virginia.jpg');"></div>
             <div class="card__overlay"></div>
             <span class="card__badge">Suite</span>
             <span class="card__badge-promo">-20%</span>
@@ -180,13 +181,13 @@
               <span class="price-note">/notte</span>
             </div>
             <p class="card__desc">Eleganza e romanticismo. Vasca sinuosa, luci soffuse, marmi pregiati e vista sulla Cattedrale.</p>
-            <a href="le-camere.html" class="card__link">Scopri di più →</a>
+            <a href="pages/le-camere.html" class="card__link">Scopri di più →</a>
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-aos="fade-up" data-aos-delay="240">
           <div class="card__img-wrap">
-            <div class="card__img" style="background-image: url('Foto/Camera - Lady/diana.jpg');"></div>
+            <div class="card__img" style="background-image: url('assets/img/diana/diana.jpg');"></div>
             <div class="card__overlay"></div>
             <span class="card__badge">Suite Premium</span>
             <span class="card__badge-promo">-20%</span>
@@ -199,7 +200,7 @@
               <span class="price-note">/notte</span>
             </div>
             <p class="card__desc">Vasca idromassaggio con vista sulla Concattedrale, sauna finlandese privata e balcone esclusivo.</p>
-            <a href="le-camere.html" class="card__link">Scopri di più →</a>
+            <a href="pages/le-camere.html" class="card__link">Scopri di più →</a>
           </div>
         </div>
 
@@ -212,7 +213,7 @@
   </section>
 
   <!-- SERVIZI CAROUSEL -->
-  <section class="section section--light">
+  <section class="section section--light" data-aos="fade-up">
     <div class="container">
       <div class="section-header">
         <p class="eyebrow">I nostri servizi</p>
@@ -264,17 +265,17 @@
 
   <!-- PARALLAX COLAZIONE -->
   <section class="parallax">
-    <div class="parallax__bg" style="background-image: url('Foto/Colazione/colazione.jpg'); background-position: center top;"></div>
+    <div class="parallax__bg" style="background-image: url('assets/img/colazione/colazione.jpg'); background-position: center top;"></div>
     <div class="parallax__overlay"></div>
     <div class="parallax__content">
       <p class="eyebrow eyebrow--light">La colazione</p>
       <h2 class="parallax__title">Inizia la giornata<br />con cura</h2>
-      <a href="prenota-ora.html" class="btn-outline-gold">Prenota il tuo soggiorno</a>
+      <a href="pages/prenota-ora.html" class="btn-outline-gold">Prenota il tuo soggiorno</a>
     </div>
   </section>
 
   <!-- RECENSIONI -->
-  <section class="section section--dark">
+  <section class="section section--dark" data-aos="fade-up">
     <div class="container">
       <div class="section-header">
         <p class="eyebrow">Ospiti</p>
@@ -304,7 +305,7 @@
   </section>
 
   <!-- GALLERIA -->
-  <section class="section section--light gallery-section">
+  <section class="section section--light gallery-section" data-aos="fade-up">
     <div class="container">
       <div class="section-header">
         <p class="eyebrow">Le nostre suite</p>
@@ -312,41 +313,41 @@
         <div class="gold-divider"></div>
       </div>
       <div class="gallery-grid">
-        <a href="le-camere.html" class="gallery-item gallery-item--tall">
-          <div class="gallery-item__img" style="background-image: url('Foto/Camera - Frida/frida.jpg');"></div>
+        <a href="pages/le-camere.html" class="gallery-item gallery-item--tall">
+          <div class="gallery-item__img" style="background-image: url('assets/img/frida/frida.jpg');"></div>
           <div class="gallery-item__overlay"><span>Frida Kahlo</span></div>
         </a>
-        <a href="le-camere.html" class="gallery-item">
-          <div class="gallery-item__img" style="background-image: url('Foto/Camera - Frida/frida.jpg');"></div>
+        <a href="pages/le-camere.html" class="gallery-item">
+          <div class="gallery-item__img" style="background-image: url('assets/img/frida/frida-4.jpg');"></div>
           <div class="gallery-item__overlay"><span>Frida Kahlo</span></div>
         </a>
-        <a href="le-camere.html" class="gallery-item">
-          <div class="gallery-item__img" style="background-image: url('Foto/Camera - Frida/frida.jpg');"></div>
+        <a href="pages/le-camere.html" class="gallery-item">
+          <div class="gallery-item__img" style="background-image: url('assets/img/diana/diana.jpg');"></div>
+          <div class="gallery-item__overlay"><span>Lady Diana</span></div>
+        </a>
+        <a href="pages/le-camere.html" class="gallery-item gallery-item--tall">
+          <div class="gallery-item__img" style="background-image: url('assets/img/virginia/virginia.jpg');"></div>
+          <div class="gallery-item__overlay"><span>Virginia Woolf</span></div>
+        </a>
+        <a href="pages/le-camere.html" class="gallery-item">
+          <div class="gallery-item__img" style="background-image: url('assets/img/colazione/colazione.jpg');"></div>
+          <div class="gallery-item__overlay"><span>Colazione in camera</span></div>
+        </a>
+        <a href="pages/le-camere.html" class="gallery-item">
+          <div class="gallery-item__img" style="background-image: url('assets/img/diana/diana-3.jpg');"></div>
+          <div class="gallery-item__overlay"><span>Lady Diana</span></div>
+        </a>
+        <a href="pages/le-camere.html" class="gallery-item gallery-item--tall">
+          <div class="gallery-item__img" style="background-image: url('assets/img/virginia/virginia-4.jpg');"></div>
+          <div class="gallery-item__overlay"><span>Virginia Woolf</span></div>
+        </a>
+        <a href="pages/le-camere.html" class="gallery-item">
+          <div class="gallery-item__img" style="background-image: url('assets/img/palazzo/palazzo.jpg');"></div>
+          <div class="gallery-item__overlay"><span>Palazzo Giannone Alitti</span></div>
+        </a>
+        <a href="pages/le-camere.html" class="gallery-item">
+          <div class="gallery-item__img" style="background-image: url('assets/img/frida/frida-6.jpg');"></div>
           <div class="gallery-item__overlay"><span>Frida Kahlo</span></div>
-        </a>
-        <a href="le-camere.html" class="gallery-item gallery-item--tall">
-          <div class="gallery-item__img" style="background-image: url('Foto/Camera - Virginia/virginia.jpg');"></div>
-          <div class="gallery-item__overlay"><span>Virginia Woolf</span></div>
-        </a>
-        <a href="le-camere.html" class="gallery-item">
-          <div class="gallery-item__img" style="background-image: url('Foto/Camera - Virginia/virginia.jpg');"></div>
-          <div class="gallery-item__overlay"><span>Virginia Woolf</span></div>
-        </a>
-        <a href="le-camere.html" class="gallery-item">
-          <div class="gallery-item__img" style="background-image: url('Foto/Camera - Lady/diana.jpg');"></div>
-          <div class="gallery-item__overlay"><span>Lady Diana</span></div>
-        </a>
-        <a href="le-camere.html" class="gallery-item gallery-item--tall">
-          <div class="gallery-item__img" style="background-image: url('Foto/Camera - Lady/diana-2.jpg');"></div>
-          <div class="gallery-item__overlay"><span>Lady Diana</span></div>
-        </a>
-        <a href="le-camere.html" class="gallery-item">
-          <div class="gallery-item__img" style="background-image: url('Foto/Camera - Lady/diana-2.jpg');"></div>
-          <div class="gallery-item__overlay"><span>Lady Diana</span></div>
-        </a>
-        <a href="le-camere.html" class="gallery-item">
-          <div class="gallery-item__img" style="background-image: url('Foto/Camera - Virginia/virginia.jpg');"></div>
-          <div class="gallery-item__overlay"><span>Virginia Woolf</span></div>
         </a>
       </div>
     </div>
@@ -402,15 +403,16 @@
       </div>
 
       <div class="footer__bottom">
-        <p>© 2025 Casa Apuliae. Tutti i diritti <a href="admin/" style="color:inherit;text-decoration:none;cursor:pointer;">riservati</a>.</p>
+        <p>© <span class="copyright-year">2025</span> Casa Apuliae. Tutti i diritti <a href="admin/" style="color:inherit;text-decoration:none;cursor:pointer;">riservati</a>.</p>
         <div class="footer__bottom-links">
-          <a href="privacy-policy.html" class="footer__bottom-link">Privacy Policy</a>
-          <a href="privacy-policy.html" class="footer__bottom-link">Cookie Policy</a>
+          <a href="pages/privacy-policy.html" class="footer__bottom-link">Privacy Policy</a>
+          <a href="pages/privacy-policy.html" class="footer__bottom-link">Cookie Policy</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/loredana.js"></script>
 </body>
 </html>

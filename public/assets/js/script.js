@@ -176,16 +176,6 @@
   /* =====================================
      SMOOTH SCROLL
      ===================================== */
-  var scrollY = 0;
-  var targetY = 0;
-  var ease = 0.1;
-  
-  function smoothScroll() {
-    scrollY += (targetY - scrollY) * ease;
-    window.scrollTo(0, scrollY);
-    requestAnimationFrame(smoothScroll);
-  }
-  
   // Simple smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
     anchor.addEventListener('click', function(e) {

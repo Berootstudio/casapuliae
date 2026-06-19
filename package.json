@@ -1,11 +1,8 @@
 {
   "name": "casapuliae",
   "version": "1.0.0",
-  "description": "Casa Apuliae Website with Admin",
-  "type": "module",
+  "description": "Casa Apuliae Website – Palazzo Giannone Alitti, Bitonto",
   "scripts": {
-    "build": "echo 'Static site - no build needed'",
-    "test": "echo 'No tests'"
-  },
-  "dependencies": {}
+    "start": "python3 -m http.server 3000 --directory public"
+  }
 }
