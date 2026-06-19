@@ -5,444 +5,268 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex">
   <title>Admin - Casa Apuliae</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap');
-    
     :root {
-      --primary: #1d4f4d;
-      --primary-dark: #163d3b;
-      --accent: #c9a962;
-      --accent-light: #e8d5a3;
-      --bg-light: #f8f9fa;
-      --text-dark: #2c3e50;
-      --text-light: #666;
+      --gold: #b8963e;
+      --gold-light: #d4b060;
+      --green: #1d4f4d;
+      --green-dark: #0f3634;
+      --cream: #f7f7f5;
       --white: #ffffff;
-      --shadow: 0 4px 20px rgba(0,0,0,0.08);
-      --shadow-hover: 0 8px 30px rgba(0,0,0,0.12);
+      --text: #1d4f4d;
+      --text-muted: rgba(29,79,77,0.6);
+      --shadow: 0 2px 16px rgba(29,79,77,0.08);
+      --shadow-lg: 0 8px 40px rgba(29,79,77,0.14);
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Lato', sans-serif;
     }
-    
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    body {
-      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg-light);
-      min-height: 100vh;
-      color: var(--text-dark);
-    }
-    
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-sans); background: var(--cream); color: var(--text); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+
+    /* ── LOGIN ── */
     .login-container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-      padding: 2rem;
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(160deg, var(--green-dark) 0%, var(--green) 100%);
+      padding: 2rem; position: relative; overflow: hidden;
     }
-    
+    .login-container::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+    }
     .login-box {
-      background: var(--white);
-      padding: 3rem;
-      border-radius: 20px;
-      box-shadow: var(--shadow-hover);
-      width: 100%;
-      max-width: 420px;
-      text-align: center;
+      background: var(--white); padding: 3rem 2.5rem; width: 100%; max-width: 440px;
+      box-shadow: var(--shadow-lg); position: relative; text-align: center;
     }
-    
-    .login-logo h1 {
-      font-family: 'Cormorant Garamond', serif;
-      color: var(--primary);
-      font-size: 2rem;
-      font-weight: 300;
-      letter-spacing: 8px;
-      margin-bottom: 0.5rem;
+    .login-divider { width: 40px; height: 1px; background: linear-gradient(90deg, var(--green), var(--gold)); margin: 1rem auto 2rem; }
+    .login-brand-main { font-family: var(--font-serif); font-size: 2.2rem; font-weight: 400; letter-spacing: 0.3em; color: var(--green); }
+    .login-brand-sub { font-family: var(--font-sans); font-size: 0.65rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold); margin-top: 0.2rem; }
+    .login-subtitle { font-size: 0.75rem; letter-spacing: 0.1em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2rem; }
+    .login-hint {
+      font-size: 0.75rem; color: var(--text-muted); background: #f0f7f6;
+      border-left: 3px solid var(--gold); padding: 0.8rem 1rem; text-align: left;
+      margin-bottom: 1.8rem; line-height: 1.6;
     }
-    
-    .login-logo span {
-      display: block;
-      color: var(--accent);
-      font-size: 0.75rem;
-      letter-spacing: 6px;
-      text-transform: uppercase;
-      font-weight: 500;
+    .input-group { margin-bottom: 1.2rem; text-align: left; }
+    .input-group label { display: block; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .input-wrap { position: relative; }
+    .input-wrap input {
+      width: 100%; padding: 0.9rem 3rem 0.9rem 1rem;
+      border: 1px solid #d8e8e7; font-family: var(--font-sans); font-size: 0.95rem;
+      color: var(--text); background: var(--white); transition: border-color 0.3s;
     }
-    
-    .input-group {
-      margin-bottom: 1.5rem;
-      text-align: left;
+    .input-wrap input:focus { outline: none; border-color: var(--gold); }
+    .eye-btn {
+      position: absolute; right: 0.8rem; top: 50%; transform: translateY(-50%);
+      background: none; border: none; cursor: pointer; color: var(--text-muted); padding: 0; line-height: 1;
     }
-    
-    .input-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      color: var(--text-light);
-      font-size: 0.85rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+    .eye-btn:hover { color: var(--green); }
+    .btn-login {
+      width: 100%; padding: 0.9rem 2rem; background: var(--green); color: var(--white);
+      border: none; font-family: var(--font-sans); font-size: 0.7rem; letter-spacing: 0.2em;
+      text-transform: uppercase; cursor: pointer; transition: background 0.3s; margin-top: 0.5rem;
     }
-    
-    .input-group input {
-      width: 100%;
-      padding: 1rem 1.2rem;
-      border: 2px solid #e8e8e8;
-      border-radius: 12px;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-    }
-    
-    .input-group input:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-    
-    .btn-primary {
-      width: 100%;
-      padding: 1rem 2rem;
-      background: var(--primary);
-      color: var(--white);
-      border: none;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
-    
-    .btn-primary:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-    }
-    
+    .btn-login:hover { background: var(--green-dark); }
     .login-error {
-      color: #e74c3c;
-      text-align: center;
-      margin-top: 1rem;
-      padding: 0.8rem;
-      background: #fdf2f2;
-      border-radius: 8px;
-      display: none;
-      font-size: 0.9rem;
+      color: #c0392b; font-size: 0.82rem; margin-top: 1rem;
+      padding: 0.7rem 1rem; background: #fdf0ef; border-left: 3px solid #c0392b; text-align: left; display: none;
     }
-    
+
+    /* ── DASHBOARD LAYOUT ── */
     .dashboard { display: none; }
-    
     .sidebar {
-      position: fixed;
-      left: 0;
-      top: 0;
-      width: 280px;
-      height: 100vh;
-      background: var(--primary);
-      color: var(--white);
-      padding: 2rem 0;
-      overflow-y: auto;
-      z-index: 1000;
+      position: fixed; left: 0; top: 0; width: 260px; height: 100vh;
+      background: var(--green-dark); color: var(--white); display: flex; flex-direction: column; z-index: 1000;
     }
-    
-    .sidebar-header {
-      padding: 0 2rem 2rem;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      text-align: center;
-    }
-    
-    .sidebar-header h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      font-weight: 300;
-      letter-spacing: 6px;
-    }
-    
-    .sidebar-header span {
-      display: block;
-      color: var(--accent);
-      font-size: 0.7rem;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      margin-top: 0.3rem;
-    }
-    
-    .sidebar-user {
-      padding: 1.5rem 2rem;
-      text-align: center;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    
-    .sidebar-user strong {
-      display: block;
-      margin-top: 0.3rem;
-      font-weight: 500;
-    }
-    
+    .sidebar-top { padding: 2.5rem 2rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); text-align: center; }
+    .sidebar-brand-main { font-family: var(--font-serif); font-size: 1.6rem; font-weight: 400; letter-spacing: 0.3em; color: var(--white); }
+    .sidebar-brand-sub { font-size: 0.6rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold); margin-top: 0.2rem; }
+    .sidebar-user { padding: 1.2rem 2rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .sidebar-user p { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+    .sidebar-user strong { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 400; color: var(--white); }
+    .sidebar-gold-line { height: 1px; margin: 0 2rem; background: linear-gradient(90deg, var(--gold), transparent); }
+    nav { flex: 1; padding: 1rem 0; }
     .menu-item {
-      display: flex;
-      align-items: center;
-      padding: 1rem 2rem;
-      color: rgba(255,255,255,0.8);
-      cursor: pointer;
-      transition: all 0.3s ease;
-      border-left: 3px solid transparent;
+      display: flex; align-items: center; gap: 0.8rem; padding: 0.9rem 2rem;
+      color: rgba(255,255,255,0.6); cursor: pointer; transition: all 0.25s;
+      border-left: 2px solid transparent; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase;
     }
-    
-    .menu-item:hover, .menu-item.active {
-      background: rgba(255,255,255,0.05);
-      color: var(--white);
-      border-left-color: var(--accent);
-    }
-    
-    .menu-item span { font-size: 0.95rem; margin-left: 0.8rem; }
-    
-    .sidebar-footer {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 1.5rem 2rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
-    
+    .menu-item:hover, .menu-item.active { background: rgba(255,255,255,0.04); color: var(--white); border-left-color: var(--gold); }
+    .menu-item.active { color: var(--gold); }
+    .sidebar-footer { padding: 1.5rem 2rem; border-top: 1px solid rgba(255,255,255,0.08); }
     .btn-logout {
-      width: 100%;
-      padding: 0.8rem;
-      background: rgba(255,255,255,0.1);
-      color: var(--white);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.3s ease;
+      width: 100%; padding: 0.7rem; background: transparent; color: rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.15); font-family: var(--font-sans);
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; transition: all 0.25s;
     }
-    
-    .btn-logout:hover { background: rgba(255,255,255,0.2); }
-    
-    .main-content {
-      margin-left: 280px;
-      padding: 2rem;
-      min-height: 100vh;
-    }
-    
-    .page-header {
-      margin-bottom: 2rem;
-    }
-    
-    .page-header h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      font-weight: 400;
-      color: var(--primary);
-    }
-    
-    .card {
-      background: var(--white);
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-      margin-bottom: 2rem;
-      overflow: hidden;
-    }
-    
+    .btn-logout:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── MAIN ── */
+    .main-content { margin-left: 260px; padding: 2.5rem; min-height: 100vh; }
+    .page-header { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(29,79,77,0.1); }
+    .page-header h2 { font-family: var(--font-serif); font-size: 2rem; font-weight: 400; color: var(--green); }
+    .page-header p { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.3rem; }
+    .page-gold-line { width: 50px; height: 2px; background: linear-gradient(90deg, var(--green), var(--gold)); margin-top: 0.6rem; }
+
+    /* ── CARDS ── */
+    .card { background: var(--white); box-shadow: var(--shadow); margin-bottom: 2rem; overflow: hidden; }
     .card-header {
-      padding: 1.5rem 2rem;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-      color: var(--white);
+      padding: 1.2rem 2rem;
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+      color: var(--white); display: flex; align-items: center; gap: 0.6rem;
     }
-    
-    .card-header h3 {
-      font-weight: 500;
-      font-size: 1.1rem;
-    }
-    
+    .card-header h3 { font-family: var(--font-sans); font-weight: 400; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; }
+    .card-header-gold { width: 20px; height: 1px; background: var(--gold); margin-left: auto; }
     .card-body { padding: 2rem; }
-    
-    .form-group {
-      margin-bottom: 1.5rem;
+
+    /* ── FORM ── */
+    .form-group { margin-bottom: 1.4rem; }
+    .form-group label { display: block; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: 0.85rem 1rem; border: 1px solid #d0e0df;
+      font-family: var(--font-sans); font-size: 0.95rem; color: var(--text);
+      background: var(--white); transition: border-color 0.3s;
     }
-    
-    .form-group label {
-      display: block;
-      margin-bottom: 0.6rem;
-      color: var(--text-dark);
-      font-weight: 500;
-      font-size: 0.9rem;
-    }
-    
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 1rem 1.2rem;
-      border: 2px solid #e8e8e8;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-family: inherit;
-      transition: all 0.3s ease;
-    }
-    
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-    
-    .form-group textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-    
+    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--gold); }
+    .form-group textarea { min-height: 110px; resize: vertical; }
+    .form-group input[type="date"], .form-group input[type="time"] { cursor: pointer; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .btn-save {
-      padding: 0.9rem 2rem;
-      background: var(--primary);
-      color: var(--white);
-      border: none;
-      border-radius: 10px;
-      font-size: 0.95rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.3s ease;
+      padding: 0.85rem 2.5rem; background: var(--green); color: var(--white);
+      border: none; font-family: var(--font-sans); font-size: 0.7rem; letter-spacing: 0.18em;
+      text-transform: uppercase; cursor: pointer; transition: background 0.3s;
     }
-    
-    .btn-save:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-    }
-    
-    .alert {
-      padding: 1rem 1.5rem;
-      border-radius: 12px;
-      margin-bottom: 1.5rem;
-      display: none;
-      align-items: center;
-      gap: 0.8rem;
-    }
-    
-    .alert.success {
-      background: #d4edda;
-      color: #155724;
-      border-left: 4px solid #28a745;
-    }
-    
-    .alert.error {
-      background: #f8d7da;
-      color: #721c24;
-      border-left: 4px solid #dc3545;
-    }
-    
+    .btn-save:hover { background: var(--green-dark); }
+
+    /* ── ALERTS ── */
+    .alert { padding: 0.9rem 1.2rem; margin-bottom: 1.5rem; display: none; align-items: center; gap: 0.8rem; font-size: 0.85rem; border-left: 3px solid; }
+    .alert.success { background: #edf7ed; color: #1a5c1a; border-color: #3aad3a; }
+    .alert.error { background: #fdf0ef; color: #7c1d1d; border-color: #c0392b; }
     .alert.show { display: flex; }
-    
+
+    /* ── EVENT LIST ── */
     .event-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem;
-      background: var(--bg-light);
-      border-radius: 12px;
-      margin-bottom: 1rem;
-      border-left: 4px solid var(--accent);
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding: 1.2rem 1.4rem; background: var(--cream); margin-bottom: 0.8rem;
+      border-left: 3px solid var(--gold);
     }
-    
+    .event-item h4 { font-family: var(--font-serif); font-size: 1rem; font-weight: 400; color: var(--green); margin-bottom: 0.2rem; }
+    .event-item p { font-size: 0.78rem; color: var(--text-muted); }
+    .event-item small { font-size: 0.75rem; color: var(--text-muted); display: block; margin-top: 0.2rem; }
+    .event-price-tag { font-size: 0.75rem; color: var(--gold); font-weight: 700; margin-top: 0.3rem; display: block; letter-spacing: 0.05em; }
     .btn-delete {
-      padding: 0.5rem 1rem;
-      background: #e74c3c;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
+      padding: 0.4rem 1rem; background: transparent; color: #c0392b;
+      border: 1px solid #c0392b; font-size: 0.7rem; letter-spacing: 0.1em;
+      text-transform: uppercase; cursor: pointer; transition: all 0.2s; white-space: nowrap; flex-shrink: 0; margin-left: 1rem;
     }
-    
+    .btn-delete:hover { background: #c0392b; color: white; }
+
+    /* ── PRICE TOGGLE ── */
+    .price-toggle { display: flex; gap: 0.5rem; margin-bottom: 0.8rem; flex-wrap: wrap; }
+    .price-toggle label {
+      display: flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem;
+      border: 1px solid #d0e0df; cursor: pointer; font-size: 0.8rem; transition: all 0.2s; margin: 0;
+    }
+    .price-toggle input[type="radio"] { display: none; }
+    .price-toggle label:has(input:checked) { border-color: var(--gold); background: #fdf8ee; color: var(--green); font-weight: 700; }
+    .price-input-wrap { display: flex; align-items: center; border: 1px solid #d0e0df; overflow: hidden; transition: border-color 0.3s; }
+    .price-input-wrap:focus-within { border-color: var(--gold); }
+    .price-input-wrap input { border: none !important; flex: 1; padding: 0.85rem 0.8rem; }
+    .price-input-wrap input:focus { outline: none; }
+    .price-suffix { padding: 0 1rem; background: #f0f0f0; color: var(--text); font-weight: 700; font-size: 0.9rem; white-space: nowrap; border-left: 1px solid #d0e0df; }
+
+    /* ── UPLOAD ── */
+    .upload-area {
+      border: 1px dashed #b0c8c7; padding: 1.5rem; text-align: center;
+      cursor: pointer; transition: all 0.3s; position: relative;
+    }
+    .upload-area:hover { border-color: var(--gold); background: #fdf8ee; }
+    .upload-area input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+    .upload-area .upload-icon { font-size: 1.8rem; margin-bottom: 0.4rem; }
+    .upload-area p { color: var(--text-muted); font-size: 0.82rem; margin: 0; }
+    .upload-area strong { color: var(--green); }
+    .img-preview { margin-top: 0.8rem; overflow: hidden; display: none; }
+    .img-preview img { width: 100%; max-height: 180px; object-fit: cover; display: block; }
+    .img-preview-remove { display: flex; align-items: center; justify-content: space-between; padding: 0.4rem 0.8rem; background: #fff3f3; font-size: 0.75rem; color: #c0392b; cursor: pointer; }
+
     .hidden { display: none !important; }
     .page { display: none; }
     .page.active { display: block; }
-
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .form-group input[type="date"],
-    .form-group input[type="time"] { cursor: pointer; }
-    .price-toggle { display: flex; gap: 0.5rem; margin-bottom: 0.8rem; flex-wrap: wrap; }
-    .price-toggle label {
-      display: flex; align-items: center; gap: 0.4rem;
-      padding: 0.5rem 1rem; border: 2px solid #e8e8e8; border-radius: 8px;
-      cursor: pointer; font-size: 0.9rem; transition: all 0.2s; margin: 0; font-weight: 400;
-    }
-    .price-toggle input[type="radio"] { display: none; }
-    .price-toggle label:has(input:checked) { border-color: var(--accent); background: #fdf8ee; color: var(--primary); font-weight: 600; }
-    .price-input-wrap {
-      display: flex; align-items: center;
-      border: 2px solid #e8e8e8; border-radius: 12px; overflow: hidden; transition: border-color 0.3s;
-    }
-    .price-input-wrap:focus-within { border-color: var(--accent); }
-    .price-input-wrap input { border: none !important; border-radius: 0 !important; flex: 1; padding: 1rem 0.8rem; }
-    .price-input-wrap input:focus { outline: none; }
-    .price-suffix { padding: 0 1rem; background: #f0f0f0; color: var(--text-dark); font-weight: 600; font-size: 1rem; white-space: nowrap; border-left: 1px solid #e8e8e8; }
-    .upload-area {
-      border: 2px dashed #e8e8e8; border-radius: 12px; padding: 1.5rem;
-      text-align: center; cursor: pointer; transition: all 0.3s; position: relative;
-    }
-    .upload-area:hover { border-color: var(--accent); background: #fdf8ee; }
-    .upload-area input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
-    .upload-area .upload-icon { font-size: 2rem; margin-bottom: 0.5rem; }
-    .upload-area p { color: var(--text-light); font-size: 0.9rem; margin: 0; }
-    .upload-area strong { color: var(--primary); }
-    .img-preview { margin-top: 0.8rem; border-radius: 10px; overflow: hidden; display: none; }
-    .img-preview img { width: 100%; max-height: 180px; object-fit: cover; display: block; }
-    .img-preview-remove { display: flex; align-items: center; justify-content: space-between; padding: 0.4rem 0.8rem; background: #fff3f3; font-size: 0.8rem; color: #c0392b; cursor: pointer; }
   </style>
 </head>
 <body>
   <!-- LOGIN -->
   <div id="loginSection" class="login-container">
     <div class="login-box">
-      <div class="login-logo">
-        <h1>CASA</h1>
-        <span>APULIAE</span>
+      <div class="login-brand-main">CASA</div>
+      <div class="login-brand-sub">Apuliae</div>
+      <div class="login-divider"></div>
+      <p class="login-subtitle">Area riservata</p>
+      <div class="login-hint">
+        🔑 Inserisci username e password forniti dallo sviluppatore.
+        Per assistenza contatta: <strong>info@berootstudio.com</strong>
       </div>
       <div class="input-group">
         <label>Username</label>
-        <input type="text" id="username" value="admin">
+        <div class="input-wrap">
+          <input type="text" id="username" autocomplete="username">
+        </div>
       </div>
       <div class="input-group">
         <label>Password</label>
-        <input type="password" id="password" placeholder="Password">
+        <div class="input-wrap">
+          <input type="password" id="password" autocomplete="current-password" placeholder="••••••••">
+          <button class="eye-btn" type="button" onclick="togglePassword()" aria-label="Mostra/nascondi password">
+            <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
       </div>
-      <button class="btn-primary" onclick="login()">Accedi</button>
-      <p class="login-error" id="loginError">Credenziali errate!</p>
+      <button class="btn-login" onclick="login()">Accedi</button>
+      <p class="login-error" id="loginError">❌ Credenziali errate. Riprova.</p>
     </div>
   </div>
 
   <!-- DASHBOARD -->
   <div id="dashboardSection" class="dashboard">
     <aside class="sidebar">
-      <div class="sidebar-header">
-        <h1>CASA</h1>
-        <span>APULIAE</span>
+      <div class="sidebar-top">
+        <div class="sidebar-brand-main">CASA</div>
+        <div class="sidebar-brand-sub">Apuliae</div>
       </div>
       <div class="sidebar-user">
         <p>Benvenuta,</p>
         <strong>Loredana</strong>
       </div>
+      <div class="sidebar-gold-line"></div>
       <nav>
         <div class="menu-item active" onclick="showPage('events', this)">
-          <span>🎉 Eventi</span>
+          <span>&#10024;</span><span>Eventi</span>
         </div>
         <div class="menu-item" onclick="showPage('contacts', this)">
-          <span>📞 Contatti</span>
+          <span>&#9742;</span><span>Contatti</span>
         </div>
       </nav>
       <div class="sidebar-footer">
-        <button class="btn-logout" onclick="logout()">🚪 Logout</button>
+        <button class="btn-logout" onclick="logout()">Esci</button>
       </div>
     </aside>
 
     <main class="main-content">
-      <div class="alert success" id="successMsg">✅ Salvato con successo!</div>
-      <div class="alert error" id="errorMsg">❌ Errore nel salvataggio</div>
+      <div class="alert success" id="successMsg">&#10003; Salvato con successo! Il sito si aggiornerà in 1-2 minuti.</div>
+      <div class="alert error" id="errorMsg">&#10007; Errore nel salvataggio. Riprova.</div>
 
       <!-- PAGE: EVENTS -->
       <div id="page-events" class="page active">
         <div class="page-header">
-          <h2>🎉 Gestione Eventi</h2>
+          <h2>Gestione Eventi</h2>
+          <p>Aggiungi e gestisci gli eventi pubblicati sul sito</p>
+          <div class="page-gold-line"></div>
         </div>
         
         <div class="card">
           <div class="card-header">
-            <h3>➕ Aggiungi Nuovo Evento</h3>
+            <h3>Aggiungi Nuovo Evento</h3>
+            <div class="card-header-gold"></div>
           </div>
           <div class="card-body">
             <div class="form-group">
@@ -497,7 +321,8 @@
 
         <div class="card">
           <div class="card-header">
-            <h3>📋 Eventi Esistenti</h3>
+            <h3>Eventi Pubblicati</h3>
+            <div class="card-header-gold"></div>
           </div>
           <div class="card-body">
             <div id="eventsList"></div>
@@ -508,12 +333,15 @@
       <!-- PAGE: CONTACTS -->
       <div id="page-contacts" class="page">
         <div class="page-header">
-          <h2>📞 Contatti</h2>
+          <h2>Contatti</h2>
+          <p>Modifica le informazioni di contatto del sito</p>
+          <div class="page-gold-line"></div>
         </div>
         
         <div class="card">
           <div class="card-header">
             <h3>Modifica Contatti</h3>
+            <div class="card-header-gold"></div>
           </div>
           <div class="card-body">
             <div class="form-group">
@@ -528,7 +356,7 @@
               <label>Indirizzo</label>
               <input type="text" id="address" value="Via Cavour, 5 Bitonto">
             </div>
-            <button class="btn-save" onclick="saveContacts()">💾 Salva Contatti</button>
+            <button class="btn-save" onclick="saveContacts()">Salva Contatti</button>
           </div>
         </div>
       </div>
@@ -544,6 +372,18 @@
     if (sessionStorage.getItem('admin_logged_in') === 'true') {
       showDashboard();
       loadEvents();
+    }
+
+    function togglePassword() {
+      const inp = document.getElementById('password');
+      const icon = document.getElementById('eyeIcon');
+      if (inp.type === 'password') {
+        inp.type = 'text';
+        icon.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/>';
+      } else {
+        inp.type = 'password';
+        icon.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+      }
     }
 
     async function hashPassword(str) {
@@ -711,11 +551,11 @@
       }
       list.innerHTML = eventsData.map(e => `
         <div class="event-item">
-          <div>
+          <div style="flex:1;">
             <h4>${e.titolo || e.title || '(senza titolo)'}</h4>
-            <p>${e.data || e.date || ''} ${e.ora ? '– ' + e.ora : ''}</p>
+            <p>${e.data || e.date || ''}${e.ora ? ' &nbsp;·&nbsp; ' + e.ora : ''}</p>
             <small>${e.descrizione || e.description || ''}</small>
-            ${e.prezzo ? `<small style="color:var(--accent);font-weight:600;"> · ${e.prezzo}</small>` : ''}
+            ${e.prezzo ? `<span class="event-price-tag">${e.prezzo}</span>` : ''}
           </div>
           <button class="btn-delete" onclick="deleteEvent(${e.id})">Elimina</button>
         </div>

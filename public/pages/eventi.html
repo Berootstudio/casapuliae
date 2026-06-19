@@ -142,9 +142,119 @@
     </div>
   </footer>
 
+  <!-- MODAL PRENOTAZIONE EVENTO -->
+  <div id="bookingModal" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(15,54,52,0.7);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:1rem;">
+    <div style="background:#fff;max-width:520px;width:100%;max-height:90vh;overflow-y:auto;position:relative;">
+      <div style="background:linear-gradient(135deg,#1d4f4d,#0f3634);padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;">
+        <div>
+          <p style="font-family:'Lato',sans-serif;font-size:0.65rem;letter-spacing:0.4em;text-transform:uppercase;color:#b8963e;margin-bottom:0.2rem;">Casa Apuliae</p>
+          <h3 id="modalEventTitle" style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:400;color:#fff;"></h3>
+        </div>
+        <button onclick="closeBookingModal()" style="background:none;border:none;color:rgba(255,255,255,0.6);font-size:1.5rem;cursor:pointer;line-height:1;padding:0.2rem;">&#x2715;</button>
+      </div>
+      <div id="modalEventInfo" style="padding:0.8rem 2rem;background:#f7f7f5;font-family:'Lato',sans-serif;font-size:0.8rem;color:rgba(29,79,77,0.7);border-bottom:1px solid #e0e0e0;"></div>
+      <form id="bookingForm" style="padding:1.8rem 2rem;" onsubmit="submitBooking(event)">
+        <div id="bookingSuccess" style="display:none;background:#edf7ed;border-left:3px solid #3aad3a;padding:1rem;margin-bottom:1.2rem;font-size:0.85rem;color:#1a5c1a;">
+          &#10003; Richiesta inviata! Loredana ti risponderà al più presto.
+        </div>
+        <div style="margin-bottom:1.1rem;">
+          <label style="display:block;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(29,79,77,0.6);margin-bottom:0.4rem;">Nome e Cognome *</label>
+          <input type="text" id="bkNome" required style="width:100%;padding:0.8rem 1rem;border:1px solid #d0e0df;font-family:'Lato',sans-serif;font-size:0.95rem;color:#1d4f4d;">
+        </div>
+        <div style="margin-bottom:1.1rem;">
+          <label style="display:block;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(29,79,77,0.6);margin-bottom:0.4rem;">La tua Email *</label>
+          <input type="email" id="bkEmail" required style="width:100%;padding:0.8rem 1rem;border:1px solid #d0e0df;font-family:'Lato',sans-serif;font-size:0.95rem;color:#1d4f4d;">
+        </div>
+        <div style="margin-bottom:1.1rem;">
+          <label style="display:block;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(29,79,77,0.6);margin-bottom:0.4rem;">Telefono</label>
+          <input type="tel" id="bkTel" style="width:100%;padding:0.8rem 1rem;border:1px solid #d0e0df;font-family:'Lato',sans-serif;font-size:0.95rem;color:#1d4f4d;">
+        </div>
+        <div style="margin-bottom:1.1rem;">
+          <label style="display:block;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(29,79,77,0.6);margin-bottom:0.4rem;">Numero di persone *</label>
+          <select id="bkPersone" required style="width:100%;padding:0.8rem 1rem;border:1px solid #d0e0df;font-family:'Lato',sans-serif;font-size:0.95rem;color:#1d4f4d;background:#fff;">
+            <option value="">Seleziona...</option>
+            <option>1 persona</option><option>2 persone</option><option>3 persone</option>
+            <option>4 persone</option><option>5 persone</option><option>6+ persone</option>
+          </select>
+        </div>
+        <div style="margin-bottom:1.4rem;">
+          <label style="display:block;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(29,79,77,0.6);margin-bottom:0.4rem;">Messaggio</label>
+          <textarea id="bkMsg" rows="3" placeholder="Richieste particolari, domande..." style="width:100%;padding:0.8rem 1rem;border:1px solid #d0e0df;font-family:'Lato',sans-serif;font-size:0.95rem;color:#1d4f4d;resize:vertical;"></textarea>
+        </div>
+        <button type="submit" id="bkSubmitBtn" style="width:100%;padding:0.9rem 2rem;background:#1d4f4d;color:#fff;border:none;font-family:'Lato',sans-serif;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;transition:background 0.3s;">
+          Invia Richiesta
+        </button>
+        <p style="margin-top:0.8rem;font-size:0.72rem;color:rgba(29,79,77,0.5);text-align:center;">Riceverai una conferma all'indirizzo email indicato</p>
+      </form>
+    </div>
+  </div>
+
   <script src="../assets/js/loredana.js"></script>
 
   <script>
+    let currentBookingEvent = null;
+
+    function openBookingModal(event) {
+      currentBookingEvent = event;
+      document.getElementById('modalEventTitle').textContent = event.titolo;
+      const info = [];
+      if (event.data) info.push('📅 ' + event.data);
+      if (event.ora) info.push('🕐 ' + event.ora);
+      if (event.prezzo) info.push('💶 ' + event.prezzo);
+      document.getElementById('modalEventInfo').innerHTML = info.join(' &nbsp;·&nbsp; ');
+      document.getElementById('bookingSuccess').style.display = 'none';
+      document.getElementById('bookingForm').reset();
+      const modal = document.getElementById('bookingModal');
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeBookingModal() {
+      document.getElementById('bookingModal').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('bookingModal').addEventListener('click', function(e) {
+      if (e.target === this) closeBookingModal();
+    });
+
+    async function submitBooking(e) {
+      e.preventDefault();
+      const btn = document.getElementById('bkSubmitBtn');
+      btn.textContent = 'Invio in corso...';
+      btn.disabled = true;
+
+      const nome = document.getElementById('bkNome').value;
+      const email = document.getElementById('bkEmail').value;
+      const tel = document.getElementById('bkTel').value;
+      const persone = document.getElementById('bkPersone').value;
+      const msg = document.getElementById('bkMsg').value;
+      const ev = currentBookingEvent;
+
+      const subject = encodeURIComponent(`Prenotazione evento: ${ev.titolo}`);
+      const body = encodeURIComponent(
+        `Nuova richiesta di prenotazione evento da Casa Apuliae\n\n` +
+        `EVENTO: ${ev.titolo}\n` +
+        `Data: ${ev.data || 'n.d.'}\n` +
+        `Ora: ${ev.ora || 'n.d.'}\n` +
+        `Prezzo: ${ev.prezzo || 'n.d.'}\n\n` +
+        `RICHIEDENTE\n` +
+        `Nome: ${nome}\n` +
+        `Email: ${email}\n` +
+        `Telefono: ${tel || 'non indicato'}\n` +
+        `Persone: ${persone}\n\n` +
+        `Messaggio: ${msg || '(nessuno)'}`
+      );
+
+      window.location.href = `mailto:casaapuliae@libero.it?subject=${subject}&body=${body}`;
+
+      setTimeout(() => {
+        document.getElementById('bookingSuccess').style.display = 'block';
+        btn.textContent = 'Invia Richiesta';
+        btn.disabled = false;
+      }, 800);
+    }
+
     // Carica eventi da content/events.json
     async function loadEvents() {
       const container = document.getElementById('eventsGrid');
@@ -158,15 +268,16 @@
         const events = await response.json();
         
         const activeEvents = events.filter(e => e.attivo);
+        window._eventiData = activeEvents;
         
         if (activeEvents.length === 0) {
           container.innerHTML = '<p style="text-align: center; color: #666;">Nessun evento programmato al momento.</p>';
           return;
         }
 
-      container.innerHTML = activeEvents.map(event => `
+      container.innerHTML = activeEvents.map((event, idx) => `
         <div class="event-card" style="display: grid; grid-template-columns: 300px 1fr; gap: 2rem; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin-bottom: 2rem;">
-          <div style="background-image: url('${event.immagine}'); background-size: cover; background-position: center; min-height: 220px;" onerror="this.style.backgroundImage='url(../assets/img/palazzo/palazzo.jpg)'"></div>
+          <div style="background-image: url('${event.immagine}'); background-size: cover; background-position: center; min-height: 220px;"></div>
           <div style="padding: 1.5rem; display: flex; flex-direction: column;">
             <div style="margin-bottom: 0.5rem; font-size: 0.875rem; color: var(--green);">
               <span style="margin-right: 1rem;">📅 ${event.data}</span>
@@ -176,7 +287,7 @@
             <p style="color: #666; line-height: 1.6; flex: 1;">${event.descrizione}</p>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #eee;">
               <span style="font-weight: 600; color: var(--green);">${event.prezzo}</span>
-              <a href="./prenota-ora.html" class="btn-gold" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Prenota</a>
+              <button onclick="openBookingModal(window._eventiData[${idx}])" class="btn-gold" style="padding: 0.5rem 1rem; font-size: 0.875rem; border:none; cursor:pointer;">Prenota</button>
             </div>
           </div>
         </div>
