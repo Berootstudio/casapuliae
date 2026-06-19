@@ -351,6 +351,38 @@
     .hidden { display: none !important; }
     .page { display: none; }
     .page.active { display: block; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group input[type="date"],
+    .form-group input[type="time"] { cursor: pointer; }
+    .price-toggle { display: flex; gap: 0.5rem; margin-bottom: 0.8rem; flex-wrap: wrap; }
+    .price-toggle label {
+      display: flex; align-items: center; gap: 0.4rem;
+      padding: 0.5rem 1rem; border: 2px solid #e8e8e8; border-radius: 8px;
+      cursor: pointer; font-size: 0.9rem; transition: all 0.2s; margin: 0; font-weight: 400;
+    }
+    .price-toggle input[type="radio"] { display: none; }
+    .price-toggle label:has(input:checked) { border-color: var(--accent); background: #fdf8ee; color: var(--primary); font-weight: 600; }
+    .price-input-wrap {
+      display: flex; align-items: center;
+      border: 2px solid #e8e8e8; border-radius: 12px; overflow: hidden; transition: border-color 0.3s;
+    }
+    .price-input-wrap:focus-within { border-color: var(--accent); }
+    .price-input-wrap input { border: none !important; border-radius: 0 !important; flex: 1; padding: 1rem 0.8rem; }
+    .price-input-wrap input:focus { outline: none; }
+    .price-suffix { padding: 0 1rem; background: #f0f0f0; color: var(--text-dark); font-weight: 600; font-size: 1rem; white-space: nowrap; border-left: 1px solid #e8e8e8; }
+    .upload-area {
+      border: 2px dashed #e8e8e8; border-radius: 12px; padding: 1.5rem;
+      text-align: center; cursor: pointer; transition: all 0.3s; position: relative;
+    }
+    .upload-area:hover { border-color: var(--accent); background: #fdf8ee; }
+    .upload-area input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+    .upload-area .upload-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .upload-area p { color: var(--text-light); font-size: 0.9rem; margin: 0; }
+    .upload-area strong { color: var(--primary); }
+    .img-preview { margin-top: 0.8rem; border-radius: 10px; overflow: hidden; display: none; }
+    .img-preview img { width: 100%; max-height: 180px; object-fit: cover; display: block; }
+    .img-preview-remove { display: flex; align-items: center; justify-content: space-between; padding: 0.4rem 0.8rem; background: #fff3f3; font-size: 0.8rem; color: #c0392b; cursor: pointer; }
   </style>
 </head>
 <body>
@@ -419,25 +451,47 @@
             </div>
             <div class="form-group">
               <label>Data</label>
-              <input type="text" id="eventDate" placeholder="Es: 25 Dicembre 2025">
+              <input type="date" id="eventDate">
             </div>
-            <div class="form-group">
-              <label>Ora</label>
-              <input type="text" id="eventOra" placeholder="Es: 19:00 - 22:00">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Ora inizio</label>
+                <input type="time" id="eventOraInizio">
+              </div>
+              <div class="form-group">
+                <label>Ora fine</label>
+                <input type="time" id="eventOraFine">
+              </div>
             </div>
             <div class="form-group">
               <label>Prezzo</label>
-              <input type="text" id="eventPrezzo" placeholder="Es: 35€ a persona">
+              <div class="price-toggle">
+                <label><input type="radio" name="prezzoTipo" value="gratis" id="prezzoGratis" checked onchange="togglePrezzo(this)"><span>🎟️ Gratis / Ingresso libero</span></label>
+                <label><input type="radio" name="prezzoTipo" value="numero" id="prezzoNumero" onchange="togglePrezzo(this)"><span>💶 A pagamento</span></label>
+              </div>
+              <div id="prezzoInputWrap" class="price-input-wrap" style="display:none;">
+                <input type="number" id="eventPrezzoNum" placeholder="35" min="0" step="0.50">
+                <span class="price-suffix">€ / persona</span>
+              </div>
             </div>
             <div class="form-group">
-              <label>Immagine (URL o percorso)</label>
-              <input type="text" id="eventImmagine" placeholder="Es: ../assets/img/palazzo/palazzo.jpg">
+              <label>Immagine</label>
+              <div class="upload-area" id="uploadArea">
+                <input type="file" id="eventImmagineFile" accept="image/*" onchange="handleImageUpload(event)">
+                <div class="upload-icon">📷</div>
+                <p><strong>Clicca per caricare</strong> o trascina qui</p>
+                <p style="margin-top:0.3rem;font-size:0.8rem;">JPG, PNG, WEBP – max 5MB</p>
+              </div>
+              <div class="img-preview" id="imgPreview">
+                <img id="imgPreviewImg" src="" alt="Anteprima">
+                <div class="img-preview-remove" onclick="removeImage()">🗑️ Rimuovi immagine</div>
+              </div>
             </div>
             <div class="form-group">
               <label>Descrizione</label>
               <textarea id="eventDesc" placeholder="Descrizione dell'evento..."></textarea>
             </div>
-            <button class="btn-save" onclick="addEvent()">Aggiungi Evento</button>
+            <button class="btn-save" onclick="addEvent()">➕ Aggiungi Evento</button>
           </div>
         </div>
 
@@ -562,16 +616,65 @@
       }
     }
 
+    let currentImageBase64 = null;
+
+    function togglePrezzo(radio) {
+      document.getElementById('prezzoInputWrap').style.display = radio.value === 'numero' ? 'flex' : 'none';
+    }
+
+    function handleImageUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      if (file.size > 5 * 1024 * 1024) { alert('Immagine troppo grande (max 5MB)'); return; }
+      const reader = new FileReader();
+      reader.onload = function(ev) {
+        currentImageBase64 = ev.target.result;
+        document.getElementById('imgPreviewImg').src = currentImageBase64;
+        document.getElementById('imgPreview').style.display = 'block';
+        document.getElementById('uploadArea').style.borderColor = 'var(--accent)';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function removeImage() {
+      currentImageBase64 = null;
+      document.getElementById('eventImmagineFile').value = '';
+      document.getElementById('imgPreview').style.display = 'none';
+      document.getElementById('imgPreviewImg').src = '';
+      document.getElementById('uploadArea').style.borderColor = '';
+    }
+
+    function formatDateItalian(dateStr) {
+      if (!dateStr) return '';
+      const mesi = ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
+      const [y, m, d] = dateStr.split('-');
+      return `${parseInt(d)} ${mesi[parseInt(m)-1]} ${y}`;
+    }
+
+    function buildOra() {
+      const i = document.getElementById('eventOraInizio').value;
+      const f = document.getElementById('eventOraFine').value;
+      if (i && f) return `${i} - ${f}`;
+      return i || '';
+    }
+
+    function buildPrezzo() {
+      const tipo = document.querySelector('input[name="prezzoTipo"]:checked').value;
+      if (tipo === 'gratis') return 'Ingresso libero';
+      const num = parseFloat(document.getElementById('eventPrezzoNum').value);
+      return (!num || isNaN(num)) ? '' : `${num}€ / persona`;
+    }
+
     function addEvent() {
       const title = document.getElementById('eventTitle').value.trim();
       if (!title) { alert('Inserisci almeno il titolo!'); return; }
       const event = {
         id: Date.now(),
         titolo: title,
-        data: document.getElementById('eventDate').value.trim(),
-        ora: document.getElementById('eventOra').value.trim(),
-        prezzo: document.getElementById('eventPrezzo').value.trim(),
-        immagine: document.getElementById('eventImmagine').value.trim() || '../assets/img/palazzo/palazzo.jpg',
+        data: formatDateItalian(document.getElementById('eventDate').value),
+        ora: buildOra(),
+        prezzo: buildPrezzo(),
+        immagine: currentImageBase64 || '../assets/img/palazzo/palazzo.jpg',
         descrizione: document.getElementById('eventDesc').value.trim(),
         attivo: true
       };
@@ -580,10 +683,13 @@
       renderEvents();
       document.getElementById('eventTitle').value = '';
       document.getElementById('eventDate').value = '';
-      document.getElementById('eventOra').value = '';
-      document.getElementById('eventPrezzo').value = '';
-      document.getElementById('eventImmagine').value = '';
+      document.getElementById('eventOraInizio').value = '';
+      document.getElementById('eventOraFine').value = '';
+      document.getElementById('eventPrezzoNum').value = '';
+      document.getElementById('prezzoGratis').checked = true;
+      document.getElementById('prezzoInputWrap').style.display = 'none';
       document.getElementById('eventDesc').value = '';
+      removeImage();
     }
 
     function deleteEvent(id) {
