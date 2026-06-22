@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "Casa Apuliae Website – Palazzo Giannone Alitti, Bitonto",
   "scripts": {
-    "start": "python3 -m http.server 3000 --directory public"
+    "start": "python3 -m http.server 3000 --directory public",
+    "deploy": "wrangler deploy",
+    "preview": "wrangler dev"
+  },
+  "devDependencies": {
+    "wrangler": "^4.103.0"
   }
 }
